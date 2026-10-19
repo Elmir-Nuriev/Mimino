@@ -604,7 +604,7 @@ class MiminoBookingEngine {
         (servicesList.length ? `Доп. услуги: ${servicesList.join(', ')}\n` : '') +
         `Прошу подтвердить бронь. Спасибо!`
       );
-      waBtn.href = `https://wa.me/995599123456?text=${message}`;
+      waBtn.href = `https://wa.me/995000000000?text=${message}`;
     }
   }
 }

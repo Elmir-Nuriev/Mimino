@@ -22,8 +22,8 @@ const MIMINO_CONFIG = {
       airportDistance: "604 м от аэропорта Батуми"
     },
     contacts: {
-      phone: "+995 599 12 34 56",
-      whatsapp: "+995599123456",
+      phone: "+995 000 00 00 00",
+      whatsapp: "+995000000000",
       email: "info@auradelmar.ge",
       workingHours: "Круглосуточно 24/7"
     }

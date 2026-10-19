@@ -123,7 +123,7 @@ function renderRoomCards(filter = 'all') {
 
     return `
       <article class="room-card" data-category="${room.category}" id="room-${room.id}">
-        <div class="room-card-media">
+        <div class="room-card-media" data-lightbox-open="${room.id}" style="cursor: pointer;" title="${window.t ? window.t('rooms.gallery_btn') : 'Смотреть все фото'}">
           <img class="room-card-img" src="${room.images[0].url}" alt="${roomInfo.title}" loading="lazy">
           <div class="room-badge">${roomInfo.badge}</div>
           <button class="room-photo-count" data-lightbox-open="${room.id}" title="${window.t ? window.t('rooms.gallery_btn') : 'Смотреть все фото'}">
@@ -137,7 +137,7 @@ function renderRoomCards(filter = 'all') {
         <div class="room-card-body">
           <div class="room-header">
             <div>
-              <h3 class="room-title">${roomInfo.title}</h3>
+              <h3 class="room-title" data-lightbox-open="${room.id}" style="cursor: pointer;" title="${window.t ? window.t('rooms.gallery_btn') : 'Посмотреть фотографии'}">${roomInfo.title}</h3>
               <p class="room-subtitle">${roomInfo.subtitle}</p>
             </div>
           </div>
@@ -195,7 +195,7 @@ function renderRoomCards(filter = 'all') {
 }
 
 function renderDistances() {
-  const container = document.getElementById('distancesList');
+  const container = document.querySelector('.distances-list') || document.getElementById('distancesList');
   if (!container || !MIMINO_CONFIG.distances) return;
 
   const lang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'ru';
@@ -206,7 +206,10 @@ function renderDistances() {
     return `
       <div class="distance-item">
         <span class="distance-place">${placeName}</span>
-        <span class="distance-val">${item.distance} (${walkTime})</span>
+        <div class="distance-metrics">
+          <span class="dist-badge">${item.distance}</span>
+          <span class="dist-walk">${walkTime}</span>
+        </div>
       </div>
     `;
   }).join('');
@@ -236,10 +239,25 @@ function bindRoomCardButtons() {
     btn.removeEventListener('click', handleLightboxClick);
     btn.addEventListener('click', handleLightboxClick);
   });
+
+  // Re-bind entire room-card click to open gallery when clicking room card (excluding booking button)
+  document.querySelectorAll('.room-card').forEach(card => {
+    card.style.cursor = 'pointer';
+    card.removeEventListener('click', handleCardClick);
+    card.addEventListener('click', handleCardClick);
+  });
+}
+
+function handleCardClick(e) {
+  // If user clicked inside booking button or an interactive link, let that handle it
+  if (e.target.closest('[data-open-booking]')) return;
+  const roomId = this.getAttribute('id').replace('room-', '');
+  openLightboxForRoom(roomId);
 }
 
 function handleBookingClick(e) {
   e.preventDefault();
+  e.stopPropagation();
   const roomId = this.getAttribute('data-room-id');
   if (window.miminoBooking) {
     window.miminoBooking.openModal(roomId);
@@ -248,6 +266,7 @@ function handleBookingClick(e) {
 
 function handleLightboxClick(e) {
   e.preventDefault();
+  e.stopPropagation();
   const roomId = this.getAttribute('data-lightbox-open');
   openLightboxForRoom(roomId);
 }
@@ -255,12 +274,13 @@ function handleLightboxClick(e) {
 // Lightbox logic
 let currentLightboxImages = [];
 let currentLightboxIndex = 0;
+let currentRoomTitle = '';
 
 function initLightbox() {
-  const modal = document.getElementById('lightboxModal');
-  const closeBtn = document.getElementById('lightboxClose');
-  const prevBtn = document.getElementById('lightboxPrev');
-  const nextBtn = document.getElementById('lightboxNext');
+  const modal = document.getElementById('photoLightbox');
+  const closeBtn = document.getElementById('lightboxCloseBtn');
+  const prevBtn = document.getElementById('lightboxPrevBtn');
+  const nextBtn = document.getElementById('lightboxNextBtn');
 
   if (!modal) return;
 
@@ -269,18 +289,22 @@ function initLightbox() {
   }
 
   modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeLightbox();
+    if (e.target === modal || e.target.classList.contains('lightbox-main-view')) {
+      closeLightbox();
+    }
   });
 
   if (prevBtn) {
-    prevBtn.addEventListener('click', () => {
+    prevBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
       currentLightboxIndex = (currentLightboxIndex - 1 + currentLightboxImages.length) % currentLightboxImages.length;
       updateLightboxImage();
     });
   }
 
   if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
+    nextBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
       currentLightboxIndex = (currentLightboxIndex + 1) % currentLightboxImages.length;
       updateLightboxImage();
     });
@@ -295,18 +319,34 @@ function initLightbox() {
 }
 
 function openLightboxForRoom(roomId) {
-  const room = MIMINO_CONFIG.rooms.find(r => r.id === roomId);
+  const room = MIMINO_CONFIG.rooms.find(r => r.id === roomId) || MIMINO_CONFIG.rooms[0];
   if (!room || !room.images || room.images.length === 0) return;
 
   currentLightboxImages = room.images;
   currentLightboxIndex = 0;
 
-  const modal = document.getElementById('lightboxModal');
-  const title = document.getElementById('lightboxTitle');
-  if (title) {
-    const lang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'ru';
-    const roomInfo = (room.i18n && room.i18n[lang]) ? room.i18n[lang] : room;
-    title.textContent = roomInfo.title;
+  const modal = document.getElementById('photoLightbox');
+  const lang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'ru';
+  const roomInfo = (room.i18n && room.i18n[lang]) ? room.i18n[lang] : room;
+  currentRoomTitle = roomInfo.title;
+
+  // Render thumbnails
+  const thumbsContainer = document.getElementById('lightboxThumbsContainer');
+  if (thumbsContainer) {
+    thumbsContainer.innerHTML = currentLightboxImages.map((img, idx) => `
+      <div class="lightbox-thumb ${idx === 0 ? 'active' : ''}" data-thumb-idx="${idx}">
+        <img src="${img.url}" alt="${img.alt || roomInfo.title}">
+      </div>
+    `).join('');
+
+    thumbsContainer.querySelectorAll('.lightbox-thumb').forEach(thumb => {
+      thumb.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const idx = parseInt(thumb.getAttribute('data-thumb-idx'), 10);
+        currentLightboxIndex = idx;
+        updateLightboxImage();
+      });
+    });
   }
 
   updateLightboxImage();
@@ -317,21 +357,28 @@ function openLightboxForRoom(roomId) {
 }
 
 function updateLightboxImage() {
-  const imgEl = document.getElementById('lightboxImg');
+  const imgEl = document.getElementById('lightboxMainImg');
   const captionEl = document.getElementById('lightboxCaption');
-  const counterEl = document.getElementById('lightboxCounter');
 
   if (!imgEl || currentLightboxImages.length === 0) return;
 
   const current = currentLightboxImages[currentLightboxIndex];
   imgEl.src = current.url;
   imgEl.alt = current.alt || 'Aura Del Mar Room';
-  if (captionEl) captionEl.textContent = current.alt || '';
-  if (counterEl) counterEl.textContent = `${currentLightboxIndex + 1} / ${currentLightboxImages.length}`;
+  
+  if (captionEl) {
+    captionEl.textContent = `${currentRoomTitle ? currentRoomTitle + ' • ' : ''}${current.alt || ''} (${currentLightboxIndex + 1} / ${currentLightboxImages.length})`;
+  }
+
+  // Update active thumbnail
+  const thumbs = document.querySelectorAll('.lightbox-thumb');
+  thumbs.forEach((thumb, idx) => {
+    thumb.classList.toggle('active', idx === currentLightboxIndex);
+  });
 }
 
 function closeLightbox() {
-  const modal = document.getElementById('lightboxModal');
+  const modal = document.getElementById('photoLightbox');
   if (modal) {
     modal.classList.remove('active');
     document.body.style.overflow = '';
@@ -345,10 +392,14 @@ function initFaqAccordion() {
     const btn = item.querySelector('.faq-question');
     if (btn) {
       btn.addEventListener('click', () => {
-        const isOpen = item.classList.contains('active');
-        items.forEach(i => i.classList.remove('active'));
+        const isOpen = item.classList.contains('active') || item.classList.contains('open');
+        items.forEach(i => {
+          i.classList.remove('active');
+          i.classList.remove('open');
+        });
         if (!isOpen) {
           item.classList.add('active');
+          item.classList.add('open');
         }
       });
     }
@@ -394,9 +445,10 @@ function initHeroSync() {
   if (heroBtn) {
     heroBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      const roomsSec = document.getElementById('rooms');
-      if (roomsSec) {
-        roomsSec.scrollIntoView({ behavior: 'smooth' });
+      const heroRoom = document.getElementById('heroRoomType');
+      const roomId = heroRoom ? heroRoom.value : null;
+      if (window.miminoBooking) {
+        window.miminoBooking.openModal(roomId);
       }
     });
   }

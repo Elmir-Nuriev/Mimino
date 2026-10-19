@@ -184,7 +184,7 @@
           <div class="booking-bar-field">
             <label for="heroCheckIn">
               <svg fill="currentColor" viewBox="0 0 16 16"><path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/></svg>
-              Заезд
+              <span data-i18n="hero.checkin">Заезд</span>
             </label>
             <input type="date" id="heroCheckIn" required>
           </div>
@@ -192,7 +192,7 @@
           <div class="booking-bar-field">
             <label for="heroCheckOut">
               <svg fill="currentColor" viewBox="0 0 16 16"><path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/></svg>
-              Выезд
+              <span data-i18n="hero.checkout">Выезд</span>
             </label>
             <input type="date" id="heroCheckOut" required>
           </div>
@@ -200,31 +200,31 @@
           <div class="booking-bar-field">
             <label for="heroGuests">
               <svg fill="currentColor" viewBox="0 0 16 16"><path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
-              Гости
+              <span data-i18n="hero.guests">Гости</span>
             </label>
             <select id="heroGuests">
-              <option value="1">1 гость</option>
-              <option value="2" selected>2 гостя</option>
-              <option value="3">3 гостя</option>
-              <option value="4">4 гостя</option>
+              <option value="1" data-i18n="hero.guest_1">1 гость</option>
+              <option value="2" selected data-i18n="hero.guest_2">2 гостя</option>
+              <option value="3" data-i18n="hero.guest_3">3 гостя</option>
+              <option value="4" data-i18n="hero.guest_4">4 гостя</option>
             </select>
           </div>
 
           <div class="booking-bar-field">
             <label for="heroRoomType">
               <svg fill="currentColor" viewBox="0 0 16 16"><path d="M3 10V2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v8h2a1 1 0 0 1 1 1v3H0v-3a1 1 0 0 1 1-1h2z"/></svg>
-              Тип номера
+              <span data-i18n="hero.room_type">Тип номера</span>
             </label>
             <select id="heroRoomType">
-              <option value="standard-double">Стандартный двухместный (от 5 882 ₽)</option>
-              <option value="superior-double">Улучшенный с балконом (от 7 200 ₽)</option>
-              <option value="family-suite">Семейный номер до 4 чел (от 8 900 ₽)</option>
-              <option value="deluxe-studio">Делюкс Студия с видом на море (от 11 500 ₽)</option>
+              <option value="standard-double" data-i18n="rooms.filter_double">Стандартный двухместный</option>
+              <option value="superior-double">Улучшенный с балконом</option>
+              <option value="family-suite" data-i18n="rooms.filter_family">Семейный номер</option>
+              <option value="deluxe-studio" data-i18n="rooms.filter_deluxe">Делюкс Студия с видом на море</option>
             </select>
           </div>
 
           <button type="button" class="btn btn-primary booking-bar-btn" id="heroSearchBtn">
-            <span>Проверить цены</span>
+            <span data-i18n="hero.search_btn">Проверить цены</span>
             <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
           </button>
         </form>
@@ -300,15 +300,15 @@
           <div class="story-stats-row">
             <div class="stat-item">
               <strong>12</strong>
-              <span>уютных номеров</span>
+              <span data-i18n="about.stat_rooms">уютных номеров</span>
             </div>
             <div class="stat-item">
               <strong>250 м</strong>
-              <span>до моря</span>
+              <span data-i18n="about.stat_sea">до моря</span>
             </div>
             <div class="stat-item">
               <strong>8.2</strong>
-              <span>высокий рейтинг</span>
+              <span data-i18n="about.stat_rating">высокий рейтинг</span>
             </div>
           </div>
         </div>
@@ -329,44 +329,44 @@
 
       <div class="restaurant-hero-card">
         <div class="restaurant-visual">
-          <img src="assets/images/restaurant-1.jpg" alt="Ресторан Mimino Батуми" loading="lazy">
+          <img src="assets/images/restaurant-1.jpg" alt="Ресторан Aura Del Mar Батуми" loading="lazy">
           <div class="restaurant-badge-overlay">
-            <strong>Завтрак с 09:00 до 11:00</strong>
-            <span>Бесплатно для всех проживающих гостей</span>
+            <strong data-i18n="restaurant.breakfast_time">Завтрак с 09:00 до 11:00</strong>
+            <span data-i18n="restaurant.breakfast_free">Бесплатно для всех проживающих гостей</span>
           </div>
         </div>
 
         <div class="restaurant-details">
-          <div class="section-tag" style="align-self: flex-start;">Гастрономия &amp; Лаундж</div>
-          <h3>Вкусы, которые невозможно забыть</h3>
-          <p>
+          <div class="section-tag" style="align-self: flex-start;" data-i18n="restaurant.tag2">Гастрономия &amp; Лаундж</div>
+          <h3 data-i18n="restaurant.flavour_title">Вкусы, которые невозможно забыть</h3>
+          <p data-i18n="restaurant.flavour_desc">
             Наш ресторан предлагает не только бесплатные домашние завтраки каждое утро, но и полноценное меню на обед и ужин. Попробуйте знаменитый аджарский хачапури-лодочку с хрустящей корочкой, сочные хинкали с ароматным бульоном и нежнейший шашлык на углях с бокалом натурального грузинского вина.
           </p>
 
           <div class="dish-highlights">
             <div class="dish-item">
               <svg viewBox="0 0 16 16" fill="currentColor"><path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3z"/></svg>
-              <span>Хачапури по-аджарски</span>
+              <span data-i18n="restaurant.dish1">Хачапури по-аджарски</span>
             </div>
             <div class="dish-item">
               <svg viewBox="0 0 16 16" fill="currentColor"><path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3z"/></svg>
-              <span>Сочный шашлык на мангале</span>
+              <span data-i18n="restaurant.dish2">Сочный шашлык на мангале</span>
             </div>
             <div class="dish-item">
               <svg viewBox="0 0 16 16" fill="currentColor"><path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3z"/></svg>
-              <span>Домашнее грузинское вино</span>
+              <span data-i18n="restaurant.dish3">Домашнее грузинское вино</span>
             </div>
             <div class="dish-item">
               <svg viewBox="0 0 16 16" fill="currentColor"><path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3z"/></svg>
-              <span>Караоке и живые вечера</span>
+              <span data-i18n="restaurant.dish4">Караоке и живые вечера</span>
             </div>
           </div>
 
           <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-            <button class="btn btn-primary" data-open-booking>
+            <button class="btn btn-primary" data-open-booking data-i18n="restaurant.book_with_meal">
               Забронировать номер с питанием
             </button>
-            <a href="https://wa.me/995000000000?text=Здравствуйте,%20хочу%20забронировать%20столик%20в%20ресторане%20Aura%20Del%20Mar" target="_blank" class="btn btn-outline" rel="noopener">
+            <a href="https://wa.me/995000000000?text=Здравствуйте,%20хочу%20забронировать%20столик%20в%20ресторане%20Aura%20Del%20Mar" target="_blank" class="btn btn-outline" rel="noopener" data-i18n="restaurant.cta_wa">
               Заказать столик в WhatsApp
             </a>
           </div>
@@ -391,64 +391,64 @@
           <div class="amenity-icon-wrap">
             <svg fill="currentColor" viewBox="0 0 16 16"><path d="M15.384 6.115a.485.485 0 0 0-.047-.736A12.444 12.444 0 0 0 8 3C5.259 3 2.723 3.882.663 5.379a.485.485 0 0 0-.048.736.518.518 0 0 0 .668.05A11.448 11.448 0 0 1 8 4c2.507 0 4.827.802 6.716 2.164.205.148.49.13.668-.049z"/><path d="M13.229 8.271a.482.482 0 0 0-.063-.745A9.455 9.455 0 0 0 8 6c-1.905 0-3.68.56-5.166 1.526a.48.48 0 0 0-.063.745.525.525 0 0 0 .652.065A8.46 8.46 0 0 1 8 7a8.46 8.46 0 0 1 4.577 1.336c.205.132.48.108.652-.065z"/><path d="M10.963 10.428a.486.486 0 0 0-.083-.759A6.467 6.467 0 0 0 8 8.5c-1.127 0-2.184.28-3.111.782a.486.486 0 0 0-.083.759.528.528 0 0 0 .633.08A5.474 5.474 0 0 1 8 9.5c1.02 0 1.968.278 2.78.762.203.12.469.096.633-.08z"/><path d="M8.5 12a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/></svg>
           </div>
-          <h4>Бесплатный Wi-Fi</h4>
-          <p>Высокоскоростное покрытие на всей территории отеля и в каждом номере для работы и отдыха.</p>
+          <h4 data-i18n="amenities.wifi_title">Бесплатный Wi-Fi</h4>
+          <p data-i18n="amenities.wifi_desc">Высокоскоростное покрытие на всей территории отеля и в каждом номере для работы и отдыха.</p>
         </div>
 
         <div class="amenity-card">
           <div class="amenity-icon-wrap">
             <svg fill="currentColor" viewBox="0 0 16 16"><path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm10.5 10V4H7.87c-.896 0-1.503.456-1.503 1.258 0 .802.58 1.205 1.503 1.205h1.127V8H7.9c-1.393 0-2.22-.72-2.22-1.996C5.68 4.7 6.64 4 8.077 4H12v8h-1.5z"/></svg>
           </div>
-          <h4>Собственная парковка</h4>
-          <p>Бесплатная закрытая парковочная зона для автомобилей наших гостей под круглосуточным видеонаблюдением.</p>
+          <h4 data-i18n="amenities.parking_title">Собственная парковка</h4>
+          <p data-i18n="amenities.parking_desc">Бесплатная закрытая парковочная зона для автомобилей наших гостей под круглосуточным видеонаблюдением.</p>
         </div>
 
         <div class="amenity-card">
           <div class="amenity-icon-wrap">
             <svg fill="currentColor" viewBox="0 0 16 16"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/></svg>
           </div>
-          <h4>Стойка 24/7</h4>
-          <p>Круглосуточный заезд и консьерж-сервис: поможем в любое время суток с трансфером и багажом.</p>
+          <h4 data-i18n="amenities.reception_title">Стойка 24/7</h4>
+          <p data-i18n="amenities.reception_desc">Круглосуточный заезд и консьерж-сервис: поможем в любое время суток с трансфером и багажом.</p>
         </div>
 
         <div class="amenity-card">
           <div class="amenity-icon-wrap">
             <svg fill="currentColor" viewBox="0 0 16 16"><path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/></svg>
           </div>
-          <h4>Экскурсии по Грузии</h4>
-          <p>Организуем индивидуальные туры: водопады Аджарии, каньоны Мартвили, Сванетия, винные погреба.</p>
+          <h4 data-i18n="amenities.tours_title">Экскурсии по Грузии</h4>
+          <p data-i18n="amenities.tours_desc">Организуем индивидуальные туры: водопады Аджарии, каньоны Мартвили, Сванетия, винные погреба.</p>
         </div>
 
         <div class="amenity-card">
           <div class="amenity-icon-wrap">
             <svg fill="currentColor" viewBox="0 0 16 16"><path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/></svg>
           </div>
-          <h4>Трансфер из аэропорта</h4>
-          <p>Всего 600 м от Международного аэропорта Батуми. Встретим вас прямо на выходе из терминала.</p>
+          <h4 data-i18n="amenities.transfer_title">Трансфер из аэропорта</h4>
+          <p data-i18n="amenities.transfer_desc">Всего 600 м от Международного аэропорта Батуми. Встретим вас прямо на выходе из терминала.</p>
         </div>
 
         <div class="amenity-card">
           <div class="amenity-icon-wrap">
             <svg fill="currentColor" viewBox="0 0 16 16"><path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5zm1.886 6.914L15 7.159V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.159l6.614 1.755a1.5 1.5 0 0 0 .772 0zM1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.614 7.82a.5.5 0 0 1-.228 0L1 6.116V4.5a.5.5 0 0 1 .5-.5z"/></svg>
           </div>
-          <h4>Конференц-зал</h4>
-          <p>Просторное светлое помещение со столами и экраном для бизнес-встреч, тренингов и банкетов.</p>
+          <h4 data-i18n="amenities.conference_title">Конференц-зал</h4>
+          <p data-i18n="amenities.conference_desc">Просторное светлое помещение со столами и экраном для бизнес-встреч, тренингов и банкетов.</p>
         </div>
 
         <div class="amenity-card">
           <div class="amenity-icon-wrap">
             <svg fill="currentColor" viewBox="0 0 16 16"><path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2z"/></svg>
           </div>
-          <h4>Летняя терраса</h4>
-          <p>Открытая зона отдыха с шезлонгами, столами и видом на закаты над Черноморской ривьерой.</p>
+          <h4 data-i18n="amenities.terrace_title">Летняя терраса</h4>
+          <p data-i18n="amenities.terrace_desc">Открытая зона отдыха с шезлонгами, столами и видом на закаты над Черноморской ривьерой.</p>
         </div>
 
         <div class="amenity-card">
           <div class="amenity-icon-wrap">
             <svg fill="currentColor" viewBox="0 0 16 16"><path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/><path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 14 8a.5.5 0 0 1-1 0 5 5 0 0 0-5-5zm0 10a5 5 0 0 0 5-5 .5.5 0 0 1 1 0 6.002 6.002 0 0 1-10.614 3.818.5.5 0 0 1 .771-.636A4.985 4.985 0 0 0 8 13z"/></svg>
           </div>
-          <h4>Прачечная и глажка</h4>
-          <p>Стиральная машина, сушилка и гладильные принадлежности для свежести вашего гардероба.</p>
+          <h4 data-i18n="amenities.laundry_title">Прачечная и глажка</h4>
+          <p data-i18n="amenities.laundry_desc">Стиральная машина, сушилка и гладильные принадлежности для свежести вашего гардероба.</p>
         </div>
       </div>
     </div>
@@ -466,38 +466,38 @@
       </div>
 
       <div class="reviews-grid">
-        <!-- Review 1 (Real from Ostrovok HTML) -->
+        <!-- Review 1 -->
         <article class="review-card">
           <div class="review-top">
             <span class="review-source-tag">Ostrovok.ru • 10 / 10</span>
             <div class="review-rating-stars">★★★★★</div>
           </div>
-          <p class="review-quote">
+          <p class="review-quote" data-i18n="reviews.r1_text">
             «Хозяйка выше всех похвал! В номере чисто, свежее белье. До набережной 13 минут пешком, до пляжа рукой подать. Из окна видны взлетающие самолеты на расстоянии вытянутой руки — невероятное зрелище! При этом в номерах совершенно не шумно.»
           </p>
           <div class="review-author-row">
             <div class="review-avatar">А</div>
             <div class="author-info">
-              <strong>Артем</strong>
-              <span>Россия • Проверенное бронирование</span>
+              <strong data-i18n="reviews.r1_author">Артем</strong>
+              <span data-i18n="reviews.r1_sub">Россия • Проверенное бронирование</span>
             </div>
           </div>
         </article>
 
-        <!-- Review 2 (Real from Booking.com) -->
+        <!-- Review 2 -->
         <article class="review-card">
           <div class="review-top">
             <span class="review-source-tag">Booking.com • 9.8 / 10</span>
             <div class="review-rating-stars">★★★★★</div>
           </div>
-          <p class="review-quote">
+          <p class="review-quote" data-i18n="reviews.r2_text">
             «Великолепное место в Батуми! Очень радушный прием, как будто приехал к любимым родственникам. Домашний ресторан прямо на территории, сытные завтраки с горячим кофе. Наличие балкона в номере — огромный плюс!»
           </p>
           <div class="review-author-row">
             <div class="review-avatar">N</div>
             <div class="author-info">
-              <strong>Nino K.</strong>
-              <span>Грузия • Индивидуальный путешественник</span>
+              <strong data-i18n="reviews.r2_author">Нино К.</strong>
+              <span data-i18n="reviews.r2_sub">Грузия • Индивидуальный путешественник</span>
             </div>
           </div>
         </article>
@@ -508,14 +508,14 @@
             <span class="review-source-tag">Ostrovok.ru • 9.5 / 10</span>
             <div class="review-rating-stars">★★★★★</div>
           </div>
-          <p class="review-quote">
+          <p class="review-quote" data-i18n="reviews.r3_text">
             «Отличное соотношение цены и качества! Отель небольшой, всего 12 номеров, поэтому тишина, покой и чистота. Море рядом, набережная прекрасная, кондиционер и Smart TV работали безупречно. С удовольствием вернемся!»
           </p>
           <div class="review-author-row">
             <div class="review-avatar">А&amp;М</div>
             <div class="author-info">
-              <strong>Александр и Марина</strong>
-              <span>Беларусь • Отдых с семьей</span>
+              <strong data-i18n="reviews.r3_author">Александр и Марина</strong>
+              <span data-i18n="reviews.r3_sub">Беларусь • Отдых с семьей</span>
             </div>
           </div>
         </article>
@@ -545,7 +545,7 @@
             </div>
           </div>
 
-          <h4 style="margin-bottom: 16px; font-size: 1.1rem;">Что находится рядом:</h4>
+          <h4 style="margin-bottom: 16px; font-size: 1.1rem;" data-i18n="location.near_title">Что находится рядом:</h4>
           <div class="distances-list">
             <div class="distance-item">
               <span class="distance-place">🌊 Побережье Чёрного моря</span>
@@ -602,7 +602,7 @@
         <!-- Interactive Map Frame -->
         <div class="map-visual-card">
           <div class="map-header">
-            <strong>
+            <strong data-i18n="location.map_title">
               <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
               Интерактивная карта Батуми
             </strong>
@@ -775,10 +775,10 @@
   <!-- Floating Mobile Bar for Instant Booking -->
   <aside class="mobile-book-bar" aria-label="Мобильное бронирование">
     <div class="mobile-price-preview">
-      <span>Стоимость номера</span>
+      <span data-i18n="mob.room_price">Стоимость номера</span>
       <strong id="mobPricePreview">от 5 882 ₽</strong>
     </div>
-    <button class="btn btn-primary btn-sm" data-open-booking>
+    <button class="btn btn-primary btn-sm" data-open-booking data-i18n="mob.book_btn">
       Забронировать
     </button>
   </aside>
@@ -796,8 +796,8 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
           </div>
           <div class="booking-header-titles">
-            <h3 id="bookingModalTitle">Бронирование номера в Aura Del Mar</h3>
-            <p>Гарантия лучшей цены напрямую от отеля • Завтрак включен • Без предоплаты</p>
+            <h3 id="bookingModalTitle" data-i18n="booking.modal_title">Бронирование номера в Aura Del Mar</h3>
+            <p data-i18n="booking.modal_subtitle">Гарантия лучшей цены напрямую от отеля • Завтрак включен • Без предоплаты</p>
           </div>
         </div>
         <button class="booking-modal-close" data-close-booking aria-label="Закрыть окно бронирования">✕</button>
@@ -807,23 +807,23 @@
       <div class="booking-stepper" id="bookingStepper">
         <div class="step-item active" data-step-index="1">
           <div class="step-number">1</div>
-          <span>Даты и гости</span>
+          <span data-i18n="booking.step1_tab">Даты и гости</span>
         </div>
         <div class="step-item" data-step-index="2">
           <div class="step-number">2</div>
-          <span>Выбор номера</span>
+          <span data-i18n="booking.step2_tab">Выбор номера</span>
         </div>
         <div class="step-item" data-step-index="3">
           <div class="step-number">3</div>
-          <span>Доп. услуги</span>
+          <span data-i18n="booking.step3_tab">Доп. услуги</span>
         </div>
         <div class="step-item" data-step-index="4">
           <div class="step-number">4</div>
-          <span>Данные гостя</span>
+          <span data-i18n="booking.step4_tab">Данные гостя</span>
         </div>
         <div class="step-item" data-step-index="5">
           <div class="step-number">5</div>
-          <span>Подтверждение</span>
+          <span data-i18n="booking.step5_tab">Подтверждение</span>
         </div>
       </div>
 
@@ -835,36 +835,36 @@
           
           <!-- STEP 1: Dates & Guests -->
           <div class="booking-step-view active" data-step="1">
-            <h4 class="step-headline">Выберите даты проживания</h4>
-            <p class="step-description">Укажите предполагаемые даты заезда и количество гостей для точного расчета стоимости.</p>
+            <h4 class="step-headline" data-i18n="booking.step1_title">Выберите даты проживания</h4>
+            <p class="step-description" data-i18n="booking.step1_desc">Укажите предполагаемые даты заезда и количество гостей для точного расчета стоимости.</p>
 
             <div class="form-grid-2">
               <div class="form-group">
-                <label for="bkCheckIn">📅 Дата заезда (после 14:00)</label>
+                <label for="bkCheckIn" data-i18n="booking.checkin_label">📅 Дата заезда (после 14:00)</label>
                 <input type="date" id="bkCheckIn" required>
               </div>
               <div class="form-group">
-                <label for="bkCheckOut">📅 Дата выезда (до 12:00)</label>
+                <label for="bkCheckOut" data-i18n="booking.checkout_label">📅 Дата выезда (до 12:00)</label>
                 <input type="date" id="bkCheckOut" required>
               </div>
             </div>
 
             <div class="form-grid-2">
               <div class="form-group">
-                <label for="bkAdults">👤 Взрослые (старше 12 лет)</label>
+                <label for="bkAdults" data-i18n="booking.adults_label">👤 Взрослые (старше 12 лет)</label>
                 <select id="bkAdults">
-                  <option value="1">1 взрослый</option>
-                  <option value="2" selected>2 взрослых</option>
-                  <option value="3">3 взрослых</option>
-                  <option value="4">4 взрослых</option>
+                  <option value="1" data-i18n="booking.adult_1">1 взрослый</option>
+                  <option value="2" selected data-i18n="booking.adult_2">2 взрослых</option>
+                  <option value="3" data-i18n="booking.adult_3">3 взрослых</option>
+                  <option value="4" data-i18n="booking.adult_4">4 взрослых</option>
                 </select>
               </div>
               <div class="form-group">
-                <label for="bkChildren">🧒 Дети (до 12 лет)</label>
+                <label for="bkChildren" data-i18n="booking.children_label">🧒 Дети (до 12 лет)</label>
                 <select id="bkChildren">
-                  <option value="0" selected>Без детей</option>
-                  <option value="1">1 ребенок</option>
-                  <option value="2">2 детей</option>
+                  <option value="0" selected data-i18n="booking.child_0">Без детей</option>
+                  <option value="1" data-i18n="booking.child_1">1 ребенок</option>
+                  <option value="2" data-i18n="booking.child_2">2 детей</option>
                 </select>
               </div>
             </div>
@@ -872,7 +872,7 @@
             <div class="booking-actions-row">
               <div></div>
               <button class="btn btn-primary" data-step-nav="next">
-                <span>Продолжить: Выбор номера</span>
+                <span data-i18n="booking.btn_next_room">Продолжить: Выбор номера</span>
                 <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
               </button>
             </div>
@@ -880,17 +880,17 @@
 
           <!-- STEP 2: Choose Room -->
           <div class="booking-step-view" data-step="2">
-            <h4 class="step-headline">Выберите категорию номера</h4>
-            <p class="step-description">Все 12 номеров отеля Mimino оснащены кондиционером, собственной ванной и балконом.</p>
+            <h4 class="step-headline" data-i18n="booking.step2_title">Выберите категорию номера</h4>
+            <p class="step-description" data-i18n="booking.step2_desc">Все 12 номеров отеля Aura Del Mar оснащены кондиционером, собственной ванной и балконом.</p>
 
             <div class="booking-room-options" id="bookingRoomChoicesContainer">
               <!-- Rendered by booking.js -->
             </div>
 
             <div class="booking-actions-row">
-              <button class="btn btn-outline" data-step-nav="prev">← Назад</button>
+              <button class="btn btn-outline" data-step-nav="prev" data-i18n="booking.btn_prev">← Назад</button>
               <button class="btn btn-primary" data-step-nav="next">
-                <span>Продолжить: Доп. услуги</span>
+                <span data-i18n="booking.btn_next_srv">Продолжить: Доп. услуги</span>
                 <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
               </button>
             </div>
@@ -898,17 +898,17 @@
 
           <!-- STEP 3: Extra Services -->
           <div class="booking-step-view" data-step="3">
-            <h4 class="step-headline">Дополнительные услуги и удобства</h4>
-            <p class="step-description">Сделайте ваше пребывание в Батуми еще комфортнее (все опции опциональны).</p>
+            <h4 class="step-headline" data-i18n="booking.step3_title">Дополнительные услуги и удобства</h4>
+            <p class="step-description" data-i18n="booking.step3_desc">Сделайте ваше пребывание в Батуми еще комфортнее (все опции опциональны).</p>
 
             <div class="services-choice-list" id="bookingServicesContainer">
               <!-- Rendered by booking.js -->
             </div>
 
             <div class="booking-actions-row">
-              <button class="btn btn-outline" data-step-nav="prev">← Назад</button>
+              <button class="btn btn-outline" data-step-nav="prev" data-i18n="booking.btn_prev">← Назад</button>
               <button class="btn btn-primary" data-step-nav="next">
-                <span>Продолжить: Данные гостя</span>
+                <span data-i18n="booking.btn_next_guest">Продолжить: Данные гостя</span>
                 <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
               </button>
             </div>
@@ -916,41 +916,41 @@
 
           <!-- STEP 4: Guest Contact Details & Promo -->
           <div class="booking-step-view" data-step="4">
-            <h4 class="step-headline">Данные для бронирования</h4>
-            <p class="step-description">Мы не требуем предоплату картой. Оплата производится при заселении.</p>
+            <h4 class="step-headline" data-i18n="booking.step4_title">Данные для бронирования</h4>
+            <p class="step-description" data-i18n="booking.step4_desc">Мы не требуем предоплату картой. Оплата производится при заселении.</p>
 
             <div class="form-grid-2">
               <div class="form-group">
-                <label for="bkGuestName">Имя и Фамилия *</label>
-                <input type="text" id="bkGuestName" placeholder="Иван Иванов" required>
+                <label for="bkGuestName" data-i18n="booking.guest_name_label">Имя и Фамилия *</label>
+                <input type="text" id="bkGuestName" data-i18n-placeholder="booking.guest_name_ph" placeholder="Иван Иванов" required>
               </div>
               <div class="form-group">
-                <label for="bkGuestPhone">Телефон / WhatsApp для связи *</label>
-                <input type="tel" id="bkGuestPhone" placeholder="+7 999 123-45-67" required>
+                <label for="bkGuestPhone" data-i18n="booking.guest_phone_label">Телефон / WhatsApp для связи *</label>
+                <input type="tel" id="bkGuestPhone" data-i18n-placeholder="booking.guest_phone_ph" placeholder="+995 5XX XXX XXX" required>
               </div>
             </div>
 
             <div class="form-group" style="margin-bottom: 20px;">
-              <label for="bkGuestEmail">Электронная почта (для ваучера)</label>
-              <input type="email" id="bkGuestEmail" placeholder="example@mail.com">
+              <label for="bkGuestEmail" data-i18n="booking.guest_email_label">Электронная почта (для ваучера)</label>
+              <input type="email" id="bkGuestEmail" data-i18n-placeholder="booking.guest_email_ph" placeholder="example@mail.com">
             </div>
 
             <div class="form-group" style="margin-bottom: 20px;">
-              <label for="bkGuestRequests">Пожелания к номеру (этаж, детская люлька, трансфер и т.д.)</label>
-              <textarea id="bkGuestRequests" rows="3" placeholder="Например: номер повыше с красивым видом на взлетающие самолеты или тихий номер..."></textarea>
+              <label for="bkGuestRequests" data-i18n="booking.guest_req_label">Пожелания к номеру</label>
+              <textarea id="bkGuestRequests" data-i18n-placeholder="booking.guest_req_ph" rows="3" placeholder="Например: номер повыше с красивым видом на море или тихий номер..."></textarea>
             </div>
 
             <!-- Promo code input -->
             <div class="promo-box">
-              <input type="text" id="bkPromoCode" placeholder="Есть промокод? (например AURADELMAR10)">
-              <button type="button" class="btn btn-gold btn-sm" id="bkApplyPromoBtn">Применить</button>
+              <input type="text" id="bkPromoCode" data-i18n-placeholder="booking.promo_ph" placeholder="Есть промокод? (например AURADELMAR10)">
+              <button type="button" class="btn btn-gold btn-sm" id="bkApplyPromoBtn" data-i18n="booking.promo_btn">Применить</button>
             </div>
             <div id="promoFeedback" style="font-size: 0.85rem; margin-top: 6px; font-weight: 600;"></div>
 
             <div class="booking-actions-row">
-              <button class="btn btn-outline" data-step-nav="prev">← Назад</button>
+              <button class="btn btn-outline" data-step-nav="prev" data-i18n="booking.btn_prev">← Назад</button>
               <button class="btn btn-primary btn-lg" id="bkConfirmSubmitBtn">
-                <span>Подтвердить бронирование</span>
+                <span data-i18n="booking.btn_confirm">Подтвердить бронирование</span>
                 <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
               </button>
             </div>
@@ -962,10 +962,10 @@
               <div class="confirmation-badge-success">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>
               </div>
-              <h3 style="font-family: var(--font-serif); font-size: 2.2rem; color: var(--accent-wine); margin-bottom: 6px;">
+              <h3 style="font-family: var(--font-serif); font-size: 2.2rem; color: var(--accent-wine); margin-bottom: 6px;" data-i18n="booking.step5_title">
                 Бронирование успешно подтверждено!
               </h3>
-              <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto 16px;">
+              <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto 16px;" data-i18n="booking.step5_desc">
                 Мы зарезервировали номер за вами. Оплата производится в отеле при заселении. Ниже представлен ваш электронный ваучер.
               </p>
 
@@ -974,39 +974,39 @@
                 <div class="voucher-header">
                   <div>
                     <strong style="font-family: var(--font-serif); font-size: 1.3rem;">HOTEL AURA DEL MAR BATUMI</strong>
-                    <div style="font-size: 0.75rem; color: var(--text-muted);">Бронь от официального сайта</div>
+                    <div style="font-size: 0.75rem; color: var(--text-muted);" data-i18n="booking.vouch_official">Бронь от официального сайта</div>
                   </div>
-                  <div class="voucher-ref" id="vouchRefNumber">MIM-BAT-00000</div>
+                  <div class="voucher-ref" id="vouchRefNumber">AURA-BAT-00000</div>
                 </div>
 
                 <div class="voucher-grid">
                   <div class="voucher-field">
-                    <span>Гость</span>
+                    <span data-i18n="booking.vouch_guest">Гость</span>
                     <strong id="vouchGuestName">—</strong>
                   </div>
                   <div class="voucher-field">
-                    <span>Телефон / WhatsApp</span>
+                    <span data-i18n="booking.vouch_phone">Телефон / WhatsApp</span>
                     <strong id="vouchGuestPhone">—</strong>
                   </div>
                   <div class="voucher-field">
-                    <span>Номер</span>
+                    <span data-i18n="booking.vouch_room">Номер</span>
                     <strong id="vouchRoomTitle">—</strong>
                   </div>
                   <div class="voucher-field">
-                    <span>Даты проживания</span>
+                    <span data-i18n="booking.vouch_dates">Даты проживания</span>
                     <strong id="vouchDates">—</strong>
                   </div>
                   <div class="voucher-field">
-                    <span>Питание</span>
-                    <strong style="color: var(--accent-emerald);">Завтрак включен (09:00 - 11:00)</strong>
+                    <span data-i18n="booking.vouch_meal">Питание</span>
+                    <strong style="color: var(--accent-emerald);" data-i18n="booking.vouch_breakfast_inc">Завтрак включен (09:00 - 11:00)</strong>
                   </div>
                   <div class="voucher-field">
-                    <span>Дополнительно</span>
+                    <span data-i18n="booking.vouch_extra">Дополнительно</span>
                     <strong id="vouchServices">Без доп. услуг</strong>
                   </div>
                   <div class="voucher-field" style="grid-column: span 2; border-top: 1px dashed var(--border-medium); padding-top: 10px;">
-                    <span>Итого к оплате при заезде</span>
-                    <strong id="vouchTotal" style="font-size: 1.5rem; color: var(--accent-wine); font-family: var(--font-serif);">0 ₽</strong>
+                    <span data-i18n="booking.vouch_total_label">Итого к оплате при заезде</span>
+                    <strong id="vouchTotal" style="font-size: 1.5rem; color: var(--accent-wine); font-family: var(--font-serif);">0 ₾</strong>
                   </div>
                 </div>
 
@@ -1023,13 +1023,13 @@
 
               <!-- Actions -->
               <div class="voucher-actions">
-                <button class="btn btn-outline" id="bkPrintVoucherBtn">
+                <button class="btn btn-outline" id="bkPrintVoucherBtn" data-i18n="booking.vouch_print_btn">
                   🖨 Распечатать / Сохранить
                 </button>
-                <a href="#" target="_blank" rel="noopener" class="btn btn-primary" id="bkWaShareBtn">
+                <a href="#" target="_blank" rel="noopener" class="btn btn-primary" id="bkWaShareBtn" data-i18n="booking.vouch_wa_btn">
                   💬 Отправить копию в WhatsApp
                 </a>
-                <button class="btn btn-gold" data-close-booking>
+                <button class="btn btn-gold" data-close-booking data-i18n="booking.vouch_done_btn">
                   Готово
                 </button>
               </div>
@@ -1041,66 +1041,66 @@
         <!-- Right: Live Summary Sidebar -->
         <aside class="booking-summary-sidebar" id="bookingSummarySidebar">
           <div class="summary-title">
-            <span>Ваш выбор</span>
-            <span class="summary-hotel-badge">Aura Del Mar 3*</span>
+            <span data-i18n="summary.title">Ваш выбор</span>
+            <span class="summary-hotel-badge" data-i18n="summary.hotel_badge">Aura Del Mar 3*</span>
           </div>
 
           <div class="summary-room-preview">
             <img id="sumRoomImg" class="summary-room-img" src="assets/images/std-room-1.jpg" alt="Превью номера">
             <div class="summary-room-text">
               <strong id="sumRoomTitle">Стандартный двухместный</strong>
-              <span>Новый Бульвар • 250 м до моря</span>
+              <span data-i18n="summary.sub_loc">Новый Бульвар • 250 м до моря</span>
             </div>
           </div>
 
           <div class="summary-details-list">
             <div class="summary-detail-row">
-              <span>Даты:</span>
+              <span data-i18n="summary.dates">Даты:</span>
               <strong id="sumDates">—</strong>
             </div>
             <div class="summary-detail-row">
-              <span>Ночей:</span>
+              <span data-i18n="summary.nights">Ночей:</span>
               <strong id="sumNights">2 ночи</strong>
             </div>
             <div class="summary-detail-row">
-              <span>Гости:</span>
+              <span data-i18n="summary.guests">Гости:</span>
               <strong id="sumGuests">2 взр.</strong>
             </div>
             <div class="summary-detail-row">
-              <span>Проживание:</span>
-              <strong id="sumRoomTotal">0 ₽</strong>
+              <span data-i18n="summary.room_subtotal">Проживание:</span>
+              <strong id="sumRoomTotal">0 ₾</strong>
             </div>
             <div class="summary-detail-row">
-              <span>Доп. услуги:</span>
-              <strong id="sumServicesTotal">0 ₽</strong>
+              <span data-i18n="summary.services_subtotal">Доп. услуги:</span>
+              <strong id="sumServicesTotal">0 ₾</strong>
             </div>
             <div class="summary-detail-row" id="sumDiscountRow" style="display: none; color: var(--accent-emerald);">
-              <span>Скидка по промокоду:</span>
-              <strong id="sumDiscountVal">-0 ₽</strong>
+              <span data-i18n="summary.discount">Скидка по промокоду:</span>
+              <strong id="sumDiscountVal">-0 ₾</strong>
             </div>
           </div>
 
           <div class="summary-perks">
             <div class="summary-perk-item">
               <svg viewBox="0 0 16 16" fill="currentColor"><path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022z"/></svg>
-              <span>Сытный завтрак включен</span>
+              <span data-i18n="summary.perk_breakfast">Сытный завтрак включен</span>
             </div>
             <div class="summary-perk-item">
               <svg viewBox="0 0 16 16" fill="currentColor"><path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022z"/></svg>
-              <span>Бесплатная отмена за 24 ч</span>
+              <span data-i18n="summary.perk_cancel">Бесплатная отмена за 24 ч</span>
             </div>
             <div class="summary-perk-item">
               <svg viewBox="0 0 16 16" fill="currentColor"><path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022z"/></svg>
-              <span>Оплата при заселении</span>
+              <span data-i18n="summary.perk_pay">Оплата при заселении</span>
             </div>
           </div>
 
           <div class="summary-totals">
             <div class="total-row main">
-              <span>Итого:</span>
-              <strong id="sumGrandTotal">0 ₽</strong>
+              <span data-i18n="summary.grand_total">Итого:</span>
+              <strong id="sumGrandTotal">0 ₾</strong>
             </div>
-            <p class="summary-notice">Включая все налоги и сборы отеля</p>
+            <p class="summary-notice" data-i18n="summary.taxes_note">Включая все налоги и сборы отеля</p>
           </div>
         </aside>
 

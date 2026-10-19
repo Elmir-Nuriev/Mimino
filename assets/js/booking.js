@@ -416,12 +416,26 @@ class MiminoBookingEngine {
   applyPromo() {
     const code = (this.inPromo ? this.inPromo.value : '').trim().toUpperCase();
     const feedback = document.getElementById('promoFeedback');
+    const lang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'ru';
     
+    const promoSuccess = {
+      ru: '🎉 Промокод применен! Скидка 10% на проживание',
+      en: '🎉 Promo code applied! 10% discount on accommodation',
+      ka: '🎉 პრომოკოდი გააქტიურებულია! 10% ფასდაკლება',
+      tr: '🎉 Promosyon kodu uygulandı! Konaklamada %10 indirim'
+    };
+    const promoFail = {
+      ru: 'Неверный промокод. Попробуйте AURADELMAR10',
+      en: 'Invalid promo code. Try AURADELMAR10',
+      ka: 'არასწორი პრომოკოდი. სცადეთ AURADELMAR10',
+      tr: 'Geçersiz kod. AURADELMAR10 deneyin'
+    };
+
     if (code === 'AURADELMAR10' || code === 'MIMINO10' || code === 'BATUMI' || code === 'WELCOME') {
       this.state.discountPercent = 10;
       this.state.promoCode = code;
       if (feedback) {
-        feedback.textContent = '🎉 Промокод применен! Скидка 10% на проживание';
+        feedback.textContent = promoSuccess[lang] || promoSuccess.ru;
         feedback.style.color = 'var(--accent-emerald)';
       }
     } else if (code === '') {
@@ -430,7 +444,7 @@ class MiminoBookingEngine {
       if (feedback) feedback.textContent = '';
     } else {
       if (feedback) {
-        feedback.textContent = 'Неверный промокод. Попробуйте AURADELMAR10';
+        feedback.textContent = promoFail[lang] || promoFail.ru;
         feedback.style.color = 'var(--accent-wine)';
       }
     }
@@ -528,7 +542,14 @@ class MiminoBookingEngine {
     const requests = (this.inRequests ? this.inRequests.value : '').trim();
 
     if (!name || !phone) {
-      alert('Пожалуйста, введите ваше имя и номер телефона для связи');
+      const namePhoneAlert = {
+        ru: 'Пожалуйста, введите ваше имя и номер телефона для связи',
+        en: 'Please enter your name and phone number to continue',
+        ka: 'გთხოვთ შეიყვანოთ თქვენი სახელი და ტელეფონის ნომერი',
+        tr: 'Lütfen iletişim için adınızı ve telefon numaranızı girin'
+      };
+      const lang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'ru';
+      alert(namePhoneAlert[lang] || namePhoneAlert.ru);
       return;
     }
 
@@ -592,19 +613,44 @@ class MiminoBookingEngine {
       srvEl.textContent = servicesList.length > 0 ? servicesList.join(', ') : noServicesText;
     }
 
-    // Set up WhatsApp button
+    // Set up WhatsApp button with multilingual message
     const waBtn = document.getElementById('bkWaShareBtn');
     if (waBtn) {
-      const message = encodeURIComponent(
-        `Здравствуйте, отель Aura Del Mar Batumi! Я оформил бронирование #${this.state.bookingRef}.\n` +
-        `Гость: ${this.state.guest.name}\n` +
-        `Номер: ${rInfo.title}\n` +
-        `Даты: ${this.state.checkIn} — ${this.state.checkOut} (${nights} ночей)\n` +
-        `Сумма: ${formattedTotal}\n` +
-        (servicesList.length ? `Доп. услуги: ${servicesList.join(', ')}\n` : '') +
-        `Прошу подтвердить бронь. Спасибо!`
-      );
-      waBtn.href = `https://wa.me/995000000000?text=${message}`;
+      let message;
+      if (lang === 'en') {
+        message = `Hello, Aura Del Mar Batumi! I made a booking #${this.state.bookingRef}.\n` +
+          `Guest: ${this.state.guest.name}\n` +
+          `Room: ${rInfo.title}\n` +
+          `Dates: ${this.state.checkIn} — ${this.state.checkOut} (${nights} nights)\n` +
+          `Total: ${formattedTotal}\n` +
+          (servicesList.length ? `Extras: ${servicesList.join(', ')}\n` : '') +
+          `Please confirm my reservation. Thank you!`;
+      } else if (lang === 'ka') {
+        message = `გამარჯობა, Aura Del Mar Batumi! გავაფორმე ჯავშანი #${this.state.bookingRef}.\n` +
+          `სტუმარი: ${this.state.guest.name}\n` +
+          `ნომერი: ${rInfo.title}\n` +
+          `თარიღები: ${this.state.checkIn} — ${this.state.checkOut} (${nights} ღამე)\n` +
+          `თანხა: ${formattedTotal}\n` +
+          (servicesList.length ? `დამატებითი: ${servicesList.join(', ')}\n` : '') +
+          `გთხოვთ დამიდასტუროთ ჯავშანი. მადლობა!`;
+      } else if (lang === 'tr') {
+        message = `Merhaba Aura Del Mar Batumi! #${this.state.bookingRef} numaralı rezervasyonumu yaptım.\n` +
+          `Misafir: ${this.state.guest.name}\n` +
+          `Oda: ${rInfo.title}\n` +
+          `Tarihler: ${this.state.checkIn} — ${this.state.checkOut} (${nights} gece)\n` +
+          `Tutar: ${formattedTotal}\n` +
+          (servicesList.length ? `Ekstralar: ${servicesList.join(', ')}\n` : '') +
+          `Rezervasyonumu onaylar mısınız? Teşekkürler!`;
+      } else {
+        message = `Здравствуйте, отель Aura Del Mar Batumi! Я оформил бронирование #${this.state.bookingRef}.\n` +
+          `Гость: ${this.state.guest.name}\n` +
+          `Номер: ${rInfo.title}\n` +
+          `Даты: ${this.state.checkIn} — ${this.state.checkOut} (${nights} ночей)\n` +
+          `Сумма: ${formattedTotal}\n` +
+          (servicesList.length ? `Доп. услуги: ${servicesList.join(', ')}\n` : '') +
+          `Прошу подтвердить бронь. Спасибо!`;
+      }
+      waBtn.href = `https://wa.me/995000000000?text=${encodeURIComponent(message)}`;
     }
   }
 }

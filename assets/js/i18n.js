@@ -5,7 +5,6 @@
 
 const I18N = {
   "ru": {
-    // Topbar & Nav
     "topbar.address": "Батуми, ул. Георгия Анцухелидзе, 31 (250 м до моря)",
     "topbar.reception": "Стойка регистрации 24/7",
     "topbar.direct_booking": "Прямое бронирование без комиссии",
@@ -21,8 +20,6 @@ const I18N = {
     "nav.faq": "Вопросы",
     "nav.book": "Забронировать",
     "nav.choose_lang": "Выберите язык / Select Language:",
-
-    // Hero
     "hero.tag": "Бутик-отель на побережье Чёрного моря • Батуми",
     "hero.title": "Отель <em>Aura Del Mar</em><br>в сердце Батуми",
     "hero.desc": "Камерный бутик-отель на 12 номеров с грузинским гостеприимством, рестораном авторской кухни, панорамной террасой и захватывающим видом на взлетающие самолёты.",
@@ -37,8 +34,6 @@ const I18N = {
     "hero.sea_card_desc": "3 минуты прогулки до пляжа",
     "hero.cta_rooms": "Выбрать номер",
     "hero.cta_restaurant": "О ресторане",
-
-    // Rooms Section
     "rooms.tag": "Каталог номеров и цены",
     "rooms.title": "Номера бутик-отеля Aura Del Mar",
     "rooms.subtitle": "Всего 12 просторных номеров. В каждом номере балкон, кондиционер, скоростной Wi-Fi и бесплатный сытный завтрак каждое утро.",
@@ -56,8 +51,6 @@ const I18N = {
     "rooms.wifi_tag": "📶 Wi-Fi 100 Мбит",
     "rooms.shower_tag": "🚿 Собственный душ",
     "rooms.balcony_tag": "🌿 Балкон",
-
-    // About Section
     "about.tag": "О бутик-отеле",
     "about.title": "Уют, спокойствие и вид на море",
     "about.subtitle": "Отель «Aura Del Mar» создан для тех, кто ценит искреннее персональное внимание, чистоту и домашний уют вдали от шумных типовых высоток.",
@@ -71,8 +64,6 @@ const I18N = {
     "about.f3_desc": "Уютный зеленый двор с ротанговой мебелью, виноградной лозой и тенью в знойный полдень.",
     "about.f4_title": "Авиационный споттинг",
     "about.f4_desc": "Легендарная локация Батуми для эффектных фото самолётов на фоне закатного неба.",
-
-    // Restaurant Section
     "restaurant.tag": "Гастрономия",
     "restaurant.title": "Ресторан и терраса «Aura Del Mar»",
     "restaurant.subtitle": "Настоящая аджарская и грузинская кухня из фермерских продуктов",
@@ -85,26 +76,18 @@ const I18N = {
     "restaurant.dish2_desc": "Сочное маринованное мясо на виноградной лозе с соусом сацебели",
     "restaurant.dish3": "Грузинские вина",
     "restaurant.dish3_desc": "Саперави, Ркацители и Киндзмараули из квеври",
-
-    // Amenities Section
     "amenities.tag": "Комфорт гостей",
     "amenities.title": "Все удобства для вашего идеального отдыха",
     "amenities.subtitle": "В отеле Aura Del Mar есть всё необходимое для длительного комфортного проживания, удаленной работы и яркого отпуска в Батуми.",
-
-    // Reviews Section
     "reviews.tag": "Впечатления гостей",
     "reviews.title": "Реальные отзывы гостей",
     "reviews.subtitle": "Мы гордимся высокими оценками на мировых порталах бронирования",
-
-    // Location Section
     "location.tag": "Расположение",
     "location.title": "Как добраться до отеля",
     "location.subtitle": "Батуми, Новый Бульвар, ул. Георгия Анцухелидзе, 31",
     "location.dist_title": "Расстояния от отеля:",
     "location.yandex_btn": "Открыть на Яндекс Картах",
     "location.google_btn": "Открыть на Google Maps",
-
-    // FAQ Section
     "faq.tag": "Частые вопросы",
     "faq.title": "Ответы на популярные вопросы гостей",
     "faq.q1": "Во сколько заезд и выезд из отеля?",
@@ -119,8 +102,6 @@ const I18N = {
     "faq.a5": "Мы любим животных! Размещение с небольшими питомцами возможно по предварительному согласованию при бронировании.",
     "faq.q6": "Какие способы оплаты вы принимаете?",
     "faq.a6": "Оплата возможна банковскими картами (Visa, Mastercard), наличными (GEL, USD, EUR, RUB) при заселении или банковским переводом.",
-
-    // Footer
     "footer.brand_sub": "Boutique Hotel & Restaurant • Batumi",
     "footer.desc": "Камерный бутик-отель на 12 номеров в 250 м от моря на Новом Бульваре Батуми. Ресторан авторской кухни, сад, панорамная терраса и домашнее гостеприимство.",
     "footer.nav_title": "Навигация",
@@ -128,11 +109,126 @@ const I18N = {
     "footer.hours_title": "Режим работы",
     "footer.hours_desc": "Стойка регистрации: Круглосуточно 24/7<br>Ресторан: 08:30 – 23:00<br>Завтраки: 09:00 – 11:00",
     "footer.rights": "Все права защищены. Официальный сайт отеля Aura Del Mar Batumi.",
-    "footer.wa_label": "Чат в WhatsApp"
+    "footer.wa_label": "Чат в WhatsApp",
+    "hero.checkin": "Заезд",
+    "hero.checkout": "Выезд",
+    "hero.guests": "Гости",
+    "hero.guest_1": "1 гость",
+    "hero.guest_2": "2 гостя",
+    "hero.guest_3": "3 гостя",
+    "hero.guest_4": "4 гостя",
+    "hero.room_type": "Тип номера",
+    "hero.search_btn": "Проверить цены",
+    "about.stat_rooms": "уютных номеров",
+    "about.stat_sea": "до моря",
+    "about.stat_rating": "высокий рейтинг",
+    "restaurant.breakfast_time": "Завтрак с 09:00 до 11:00",
+    "restaurant.breakfast_free": "Бесплатно для всех проживающих гостей",
+    "restaurant.tag2": "Гастрономия & Лаундж",
+    "restaurant.flavour_title": "Вкусы, которые невозможно забыть",
+    "restaurant.flavour_desc": "Наш ресторан предлагает не только бесплатные домашние завтраки каждое утро, но и полноценное меню на обед и ужин. Попробуйте знаменитый аджарский хачапури-лодочку с хрустящей корочкой, сочные хинкали с ароматным бульоном и нежнейший шашлык на углях с бокалом натурального грузинского вина.",
+    "restaurant.book_with_meal": "Забронировать номер с питанием",
+    "restaurant.dish4": "Караоке и живые вечера",
+    "amenities.wifi_title": "Бесплатный Wi-Fi",
+    "amenities.wifi_desc": "Высокоскоростное покрытие на всей территории отеля и в каждом номере для работы и отдыха.",
+    "amenities.parking_title": "Собственная парковка",
+    "amenities.parking_desc": "Бесплатная закрытая парковочная зона для автомобилей наших гостей под круглосуточным видеонаблюдением.",
+    "amenities.reception_title": "Стойка 24/7",
+    "amenities.reception_desc": "Круглосуточный заезд и консьерж-сервис: поможем в любое время суток с трансфером и багажом.",
+    "amenities.tours_title": "Экскурсии по Грузии",
+    "amenities.tours_desc": "Организуем индивидуальные туры: водопады Аджарии, каньоны Мартвили, Сванетия, винные погреба.",
+    "amenities.transfer_title": "Трансфер из аэропорта",
+    "amenities.transfer_desc": "Всего 600 м от Международного аэропорта Батуми. Встретим вас прямо на выходе из терминала.",
+    "amenities.conference_title": "Конференц-зал",
+    "amenities.conference_desc": "Просторное светлое помещение со столами и экраном для бизнес-встреч, тренингов и банкетов.",
+    "amenities.terrace_title": "Летняя терраса",
+    "amenities.terrace_desc": "Открытая зона отдыха с шезлонгами, столами и видом на закаты над Черноморской ривьерой.",
+    "amenities.laundry_title": "Прачечная и глажка",
+    "amenities.laundry_desc": "Стиральная машина, сушилка и гладильные принадлежности для свежести вашего гардероба.",
+    "reviews.r1_text": "«Хозяйка выше всех похвал! В номере чисто, свежее белье. До набережной 13 минут пешком, до пляжа рукой подать. Из окна видны взлетающие самолеты на расстоянии вытянутой руки — невероятное зрелище! При этом в номерах совершенно не шумно.»",
+    "reviews.r1_author": "Артем",
+    "reviews.r1_sub": "Россия • Проверенное бронирование",
+    "reviews.r2_text": "«Великолепное место в Батуми! Очень радушный прием, как будто приехал к любимым родственникам. Домашний ресторан прямо на территории, сытные завтраки с горячим кофе. Наличие балкона в номере — огромный плюс!»",
+    "reviews.r2_author": "Нино К.",
+    "reviews.r2_sub": "Грузия • Индивидуальный путешественник",
+    "reviews.r3_text": "«Отличное соотношение цены и качества! Отель небольшой, всего 12 номеров, поэтому тишина, покой и чистота. Море рядом, набережная прекрасная, кондиционер и Smart TV работали безупречно. С удовольствием вернемся!»",
+    "reviews.r3_author": "Александр и Марина",
+    "reviews.r3_sub": "Беларусь • Отдых с семьей",
+    "location.near_title": "Что находится рядом:",
+    "location.map_title": "Интерактивная карта Батуми",
+    "booking.modal_title": "Бронирование номера в Aura Del Mar",
+    "booking.modal_subtitle": "Гарантия лучшей цены напрямую от отеля • Завтрак включен • Без предоплаты",
+    "booking.step1_tab": "Даты и гости",
+    "booking.step2_tab": "Выбор номера",
+    "booking.step3_tab": "Доп. услуги",
+    "booking.step4_tab": "Данные гостя",
+    "booking.step5_tab": "Подтверждение",
+    "booking.step1_title": "Выберите даты проживания",
+    "booking.step1_desc": "Укажите предполагаемые даты заезда и количество гостей для точного расчета стоимости.",
+    "booking.checkin_label": "📅 Дата заезда (после 14:00)",
+    "booking.checkout_label": "📅 Дата выезда (до 12:00)",
+    "booking.adults_label": "👤 Взрослые (старше 12 лет)",
+    "booking.adult_1": "1 взрослый",
+    "booking.adult_2": "2 взрослых",
+    "booking.adult_3": "3 взрослых",
+    "booking.adult_4": "4 взрослых",
+    "booking.children_label": "🧒 Дети (до 12 лет)",
+    "booking.child_0": "Без детей",
+    "booking.child_1": "1 ребенок",
+    "booking.child_2": "2 детей",
+    "booking.btn_next_room": "Продолжить: Выбор номера",
+    "booking.step2_title": "Выберите категорию номера",
+    "booking.step2_desc": "Все 12 номеров отеля Aura Del Mar оснащены кондиционером, собственной ванной и балконом.",
+    "booking.btn_prev": "← Назад",
+    "booking.btn_next_srv": "Продолжить: Доп. услуги",
+    "booking.step3_title": "Дополнительные услуги и удобства",
+    "booking.step3_desc": "Сделайте ваше пребывание в Батуми еще комфортнее (все опции опциональны).",
+    "booking.btn_next_guest": "Продолжить: Данные гостя",
+    "booking.step4_title": "Данные для бронирования",
+    "booking.step4_desc": "Мы не требуем предоплату картой. Оплата производится при заселении.",
+    "booking.guest_name_label": "Имя и Фамилия *",
+    "booking.guest_name_ph": "Иван Иванов",
+    "booking.guest_phone_label": "Телефон / WhatsApp для связи *",
+    "booking.guest_phone_ph": "+995 5XX XXX XXX",
+    "booking.guest_email_label": "Электронная почта (для ваучера)",
+    "booking.guest_email_ph": "example@mail.com",
+    "booking.guest_req_label": "Пожелания к номеру (этаж, детская люлька, трансфер и т.д.)",
+    "booking.guest_req_ph": "Например: номер повыше с красивым видом на море или тихий номер...",
+    "booking.promo_ph": "Есть промокод? (например AURADELMAR10)",
+    "booking.promo_btn": "Применить",
+    "booking.btn_confirm": "Подтвердить бронирование",
+    "booking.step5_title": "Бронирование успешно подтверждено!",
+    "booking.step5_desc": "Мы зарезервировали номер за вами. Оплата производится в отеле при заселении. Ниже представлен ваш электронный ваучер.",
+    "booking.vouch_official": "Бронь от официального сайта",
+    "booking.vouch_guest": "Гость",
+    "booking.vouch_phone": "Телефон / WhatsApp",
+    "booking.vouch_room": "Номер",
+    "booking.vouch_dates": "Даты проживания",
+    "booking.vouch_meal": "Питание",
+    "booking.vouch_breakfast_inc": "Завтрак включен (09:00 - 11:00)",
+    "booking.vouch_extra": "Дополнительно",
+    "booking.vouch_total_label": "Итого к оплате при заезде",
+    "booking.vouch_print_btn": "🖨 Распечатать / Сохранить",
+    "booking.vouch_wa_btn": "💬 Отправить копию в WhatsApp",
+    "booking.vouch_done_btn": "Готово",
+    "summary.title": "Ваш выбор",
+    "summary.hotel_badge": "Aura Del Mar 3*",
+    "summary.sub_loc": "Новый Бульвар • 250 м до моря",
+    "summary.dates": "Даты:",
+    "summary.nights": "Ночей:",
+    "summary.guests": "Гости:",
+    "summary.room_subtotal": "Проживание:",
+    "summary.services_subtotal": "Доп. услуги:",
+    "summary.discount": "Скидка по промокоду:",
+    "summary.perk_breakfast": "Сытный завтрак включен",
+    "summary.perk_cancel": "Бесплатная отмена за 24 ч",
+    "summary.perk_pay": "Оплата при заселении",
+    "summary.grand_total": "Итого:",
+    "summary.taxes_note": "Включая все налоги и сборы отеля",
+    "mob.room_price": "Стоимость номера",
+    "mob.book_btn": "Забронировать"
   },
-
   "en": {
-    // Topbar & Nav
     "topbar.address": "Batumi, 31 Giorgi Antsukhelidze St. (250 m to beach)",
     "topbar.reception": "Front Desk 24/7",
     "topbar.direct_booking": "Direct Booking • Zero Extra Fees",
@@ -148,8 +244,6 @@ const I18N = {
     "nav.faq": "FAQ",
     "nav.book": "Book Now",
     "nav.choose_lang": "Select Language:",
-
-    // Hero
     "hero.tag": "Boutique Hotel on Black Sea Coast • Batumi",
     "hero.title": "Hotel <em>Aura Del Mar</em><br>in Heart of Batumi",
     "hero.desc": "An intimate boutique hotel with 12 stylish rooms, authentic Georgian hospitality, fine dining restaurant, panoramic terrace, and iconic plane spotting view.",
@@ -164,8 +258,6 @@ const I18N = {
     "hero.sea_card_desc": "3 minutes walk to the beach",
     "hero.cta_rooms": "Explore Rooms",
     "hero.cta_restaurant": "Our Restaurant",
-
-    // Rooms Section
     "rooms.tag": "Rooms Catalog & Rates",
     "rooms.title": "Aura Del Mar Boutique Rooms",
     "rooms.subtitle": "Just 12 exclusive rooms. Every room features a private balcony, AC, high-speed Wi-Fi, and a complimentary hot breakfast daily.",
@@ -183,8 +275,6 @@ const I18N = {
     "rooms.wifi_tag": "📶 Wi-Fi 100 Mbps",
     "rooms.shower_tag": "🚿 Private Shower",
     "rooms.balcony_tag": "🌿 Balcony",
-
-    // About Section
     "about.tag": "About Boutique Hotel",
     "about.title": "Comfort, Serenity & Sea Breeze",
     "about.subtitle": "Aura Del Mar was crafted for travelers seeking genuine personal attention and home comfort away from crowded mega-towers.",
@@ -198,8 +288,6 @@ const I18N = {
     "about.f3_desc": "Lush courtyard with wicker furniture, grapevine canopy, and gentle afternoon shade.",
     "about.f4_title": "Plane Spotting",
     "about.f4_desc": "Batumi's legendary photography spot for airplane arrivals framed against sunset skies.",
-
-    // Restaurant Section
     "restaurant.tag": "Culinary Experience",
     "restaurant.title": "Aura Del Mar Restaurant & Lounge",
     "restaurant.subtitle": "Authentic Adjarian & Georgian culinary art from farm-fresh local produce",
@@ -212,26 +300,18 @@ const I18N = {
     "restaurant.dish2_desc": "Tender marinated meat grilled over grapevine coals with satsebeli sauce",
     "restaurant.dish3": "Heritage Georgian Wines",
     "restaurant.dish3_desc": "Estate Saperavi, Rkatsiteli & Kindzmarauli aged in qvevri",
-
-    // Amenities Section
     "amenities.tag": "Guest Comforts",
     "amenities.title": "Premium Hotel Amenities for Your Stay",
     "amenities.subtitle": "Everything you need for extended leisure, remote work, and memorable seaside holidays in Batumi.",
-
-    // Reviews Section
     "reviews.tag": "Guest Impressions",
     "reviews.title": "Verified Guest Testimonials",
     "reviews.subtitle": "Proudly rated with top scores on international booking portals",
-
-    // Location Section
     "location.tag": "Location & Access",
     "location.title": "How to Reach the Hotel",
     "location.subtitle": "Batumi, New Boulevard, 31 Giorgi Antsukhelidze St.",
     "location.dist_title": "Key Distances:",
     "location.yandex_btn": "Open in Yandex Maps",
     "location.google_btn": "Open in Google Maps",
-
-    // FAQ Section
     "faq.tag": "FAQ",
     "faq.title": "Frequently Asked Questions",
     "faq.q1": "What are check-in and check-out times?",
@@ -246,8 +326,6 @@ const I18N = {
     "faq.a5": "We are pet-friendly! Small pets are welcome upon prior confirmation when booking.",
     "faq.q6": "What payment methods are accepted?",
     "faq.a6": "We accept major credit cards (Visa, Mastercard), cash (GEL, USD, EUR, RUB) upon arrival, or direct bank transfer.",
-
-    // Footer
     "footer.brand_sub": "Boutique Hotel & Restaurant • Batumi",
     "footer.desc": "Boutique hotel with 12 rooms 250m from the Black Sea coast on Batumi New Boulevard. Fine restaurant, private garden, panoramic terrace, and warm hospitality.",
     "footer.nav_title": "Navigation",
@@ -255,11 +333,126 @@ const I18N = {
     "footer.hours_title": "Operating Hours",
     "footer.hours_desc": "Reception: 24/7 Open<br>Restaurant: 08:30 – 23:00<br>Breakfast: 09:00 – 11:00",
     "footer.rights": "All rights reserved. Official website of Aura Del Mar Batumi.",
-    "footer.wa_label": "WhatsApp Chat"
+    "footer.wa_label": "WhatsApp Chat",
+    "hero.checkin": "Check-in",
+    "hero.checkout": "Check-out",
+    "hero.guests": "Guests",
+    "hero.guest_1": "1 Guest",
+    "hero.guest_2": "2 Guests",
+    "hero.guest_3": "3 Guests",
+    "hero.guest_4": "4 Guests",
+    "hero.room_type": "Room Category",
+    "hero.search_btn": "Check Rates",
+    "about.stat_rooms": "cozy rooms",
+    "about.stat_sea": "to the sea",
+    "about.stat_rating": "top guest score",
+    "restaurant.breakfast_time": "Breakfast from 09:00 to 11:00",
+    "restaurant.breakfast_free": "Complimentary for all resident guests",
+    "restaurant.tag2": "Gastronomy & Lounge",
+    "restaurant.flavour_title": "Flavors You Will Never Forget",
+    "restaurant.flavour_desc": "Our restaurant serves hearty homemade breakfasts every morning, as well as an à la carte menu for lunch and dinner. Savor classic Adjarian khachapuri with golden crust, juicy hand-pinched khinkali, and tender charcoal-grilled mtsvadi paired with vintage Georgian wines.",
+    "restaurant.book_with_meal": "Book Room with Dining",
+    "restaurant.dish4": "Karaoke & Live Evenings",
+    "amenities.wifi_title": "High-Speed Wi-Fi",
+    "amenities.wifi_desc": "Complimentary high-speed wireless connection across all property grounds and inside every guest room.",
+    "amenities.parking_title": "Private Parking",
+    "amenities.parking_desc": "Secure, complimentary private parking for guest vehicles under 24/7 video surveillance.",
+    "amenities.reception_title": "Front Desk 24/7",
+    "amenities.reception_desc": "Round-the-clock check-in and dedicated concierge service: assistance with luggage and airport transfers anytime.",
+    "amenities.tours_title": "Georgia Excursions",
+    "amenities.tours_desc": "Bespoke guided private tours: Adjara waterfalls, Martvili canyons, Svaneti highlands, and boutique wineries.",
+    "amenities.transfer_title": "Airport Transfer",
+    "amenities.transfer_desc": "Only 600 m from Batumi International Airport. Direct personalized meet-and-greet at the terminal exit.",
+    "amenities.conference_title": "Event & Meeting Hall",
+    "amenities.conference_desc": "Spacious, sunlit venue equipped with conference seating and presentation display for events.",
+    "amenities.terrace_title": "Sun Terrace & Lounge",
+    "amenities.terrace_desc": "Open-air relaxation terrace with sunbeds and panoramic sunset views over the Black Sea horizon.",
+    "amenities.laundry_title": "Laundry & Ironing",
+    "amenities.laundry_desc": "Modern washing facilities, tumble dryers, and garment steaming kits for guest wardrobe care.",
+    "reviews.r1_text": "\"The host was beyond exceptional! Pristine room, spotless fresh linens, only a 3-minute stroll to the beach. You can watch planes landing right over the sea — truly mesmerizing, yet the soundproofing is so good you sleep peacefully!\"",
+    "reviews.r1_author": "Artem",
+    "reviews.r1_sub": "Verified Booking",
+    "reviews.r2_text": "\"A wonderful boutique gem in Batumi! Incredibly warm welcome, feeling like staying with dearest family. On-site authentic restaurant, generous breakfasts with rich hot coffee. Having a private balcony is a huge plus!\"",
+    "reviews.r2_author": "Nino K.",
+    "reviews.r2_sub": "Solo Traveler",
+    "reviews.r3_text": "\"Superb value for money! Only 12 rooms, meaning quiet serenity, peaceful privacy, and immaculate cleanliness. Sea is right nearby, AC and Smart TV worked flawlessly. We will happily return!\"",
+    "reviews.r3_author": "Alexander & Marina",
+    "reviews.r3_sub": "Family Vacation",
+    "location.near_title": "What's Nearby:",
+    "location.map_title": "Interactive Batumi Map",
+    "booking.modal_title": "Direct Booking at Aura Del Mar",
+    "booking.modal_subtitle": "Best Rate Guarantee Direct from Hotel • Breakfast Included • No Upfront Prepayment",
+    "booking.step1_tab": "Dates & Guests",
+    "booking.step2_tab": "Choose Room",
+    "booking.step3_tab": "Extra Services",
+    "booking.step4_tab": "Guest Details",
+    "booking.step5_tab": "Confirmation",
+    "booking.step1_title": "Select Stay Dates",
+    "booking.step1_desc": "Choose your arrival and departure dates and guest count for an accurate price calculation.",
+    "booking.checkin_label": "📅 Check-in Date (from 14:00)",
+    "booking.checkout_label": "📅 Check-out Date (until 12:00)",
+    "booking.adults_label": "👤 Adults (12+ years)",
+    "booking.adult_1": "1 Adult",
+    "booking.adult_2": "2 Adults",
+    "booking.adult_3": "3 Adults",
+    "booking.adult_4": "4 Adults",
+    "booking.children_label": "🧒 Children (under 12)",
+    "booking.child_0": "No Children",
+    "booking.child_1": "1 Child",
+    "booking.child_2": "2 Children",
+    "booking.btn_next_room": "Continue: Select Room",
+    "booking.step2_title": "Choose Room Category",
+    "booking.step2_desc": "All 12 rooms at Aura Del Mar include climate control, private en-suite bathroom, and balcony.",
+    "booking.btn_prev": "← Back",
+    "booking.btn_next_srv": "Continue: Add Services",
+    "booking.step3_title": "Optional Enhancements",
+    "booking.step3_desc": "Make your stay in Batumi even more memorable (all add-ons are completely optional).",
+    "booking.btn_next_guest": "Continue: Guest Info",
+    "booking.step4_title": "Reservation Information",
+    "booking.step4_desc": "No advance card charge required. Payment is made upon check-in at the hotel.",
+    "booking.guest_name_label": "Full Name *",
+    "booking.guest_name_ph": "John Smith",
+    "booking.guest_phone_label": "Phone / WhatsApp Contact *",
+    "booking.guest_phone_ph": "+995 5XX XXX XXX",
+    "booking.guest_email_label": "Email Address (for voucher)",
+    "booking.guest_email_ph": "example@mail.com",
+    "booking.guest_req_label": "Special Requests (higher floor, baby crib, airport pickup, etc.)",
+    "booking.guest_req_ph": "E.g., high floor with sea view or quiet courtyard room...",
+    "booking.promo_ph": "Have a promo code? (e.g. AURADELMAR10)",
+    "booking.promo_btn": "Apply",
+    "booking.btn_confirm": "Confirm Reservation",
+    "booking.step5_title": "Reservation Confirmed!",
+    "booking.step5_desc": "Your room has been reserved. Payment is settled at the hotel upon arrival. Below is your official e-voucher.",
+    "booking.vouch_official": "Official Direct Booking Voucher",
+    "booking.vouch_guest": "Guest",
+    "booking.vouch_phone": "Phone / WhatsApp",
+    "booking.vouch_room": "Room",
+    "booking.vouch_dates": "Stay Dates",
+    "booking.vouch_meal": "Meal Plan",
+    "booking.vouch_breakfast_inc": "Breakfast Included (09:00 - 11:00)",
+    "booking.vouch_extra": "Additional",
+    "booking.vouch_total_label": "Total Payable upon Check-in",
+    "booking.vouch_print_btn": "🖨 Print / Save Voucher",
+    "booking.vouch_wa_btn": "💬 Send Copy to WhatsApp",
+    "booking.vouch_done_btn": "Done",
+    "summary.title": "Your Selection",
+    "summary.hotel_badge": "Aura Del Mar 3*",
+    "summary.sub_loc": "New Boulevard • 250 m to beach",
+    "summary.dates": "Dates:",
+    "summary.nights": "Nights:",
+    "summary.guests": "Guests:",
+    "summary.room_subtotal": "Room Stay:",
+    "summary.services_subtotal": "Extra Services:",
+    "summary.discount": "Promo Discount:",
+    "summary.perk_breakfast": "Daily Breakfast Included",
+    "summary.perk_cancel": "Free Cancellation 24h",
+    "summary.perk_pay": "Pay upon Check-in",
+    "summary.grand_total": "Total:",
+    "summary.taxes_note": "All taxes & hotel resort fees included",
+    "mob.room_price": "Room Rates",
+    "mob.book_btn": "Book Now"
   },
-
   "ka": {
-    // Topbar & Nav
     "topbar.address": "ბათუმი, ანწუხელიძის ქ. 31 (250 მ ზღვამდე)",
     "topbar.reception": "მიღება 24/7",
     "topbar.direct_booking": "პირდაპირი ჯავშანი საკომისიოს გარეშე",
@@ -275,8 +468,6 @@ const I18N = {
     "nav.faq": "კითხვები",
     "nav.book": "დაჯავშნა",
     "nav.choose_lang": "აირჩიეთ ენა:",
-
-    // Hero
     "hero.tag": "ბუტიკ-სასტუმრო შავი ზღვის სანაპიროზე • ბათუმი",
     "hero.title": "სასტუმრო <em>Aura Del Mar</em><br>ბათუმის გულში",
     "hero.desc": "მყუდრო ბუტიკ-სასტუმრო 12 ნომრით, ქართული სტუმართმოყვარეობით, ავთენტური რესტორნით, პანორამული ტერასითა და ულამაზესი ხედებით.",
@@ -291,8 +482,6 @@ const I18N = {
     "hero.sea_card_desc": "3 წუთის სავალი სანაპირომდე",
     "hero.cta_rooms": "ნომრის არჩევა",
     "hero.cta_restaurant": "რესტორანი",
-
-    // Rooms Section
     "rooms.tag": "ნომრების კატალოგი და ფასები",
     "rooms.title": "Aura Del Mar-ის ნომრები",
     "rooms.subtitle": "სულ 12 მყუდრო ნომერი. თითოეულ ნომერშია აივანი, კონდიციონერი, მაღალსიჩქარიანი Wi-Fi და უფასო საუზმე ყოველ დილით.",
@@ -310,8 +499,6 @@ const I18N = {
     "rooms.wifi_tag": "📶 Wi-Fi 100 მბ/წმ",
     "rooms.shower_tag": "🚿 საკუთარი შხაპი",
     "rooms.balcony_tag": "🌿 აივანი",
-
-    // About Section
     "about.tag": "სასტუმროს შესახებ",
     "about.title": "სიმყუდროვე, სიმშვიდე და ზღვის ხედი",
     "about.subtitle": "სასტუმრო «Aura Del Mar» შექმნილია მათთვის, ვინც აფასებს პირად ყურადღებას, სისუფთავესა და ოჯახურ კომფორტს ხმაურიანი ცათამბჯენებისგან მოშორებით.",
@@ -325,8 +512,6 @@ const I18N = {
     "about.f3_desc": "მწვანე ეზო როტანგის ავეჯით, ყურძნის ხეივნითა და გრილი ჩრდილით ცხელ შუადღეს.",
     "about.f4_title": "თვითმფრინავების ხედი",
     "about.f4_desc": "ბათუმის ცნობილი ლოკაცია ულამაზესი ფოტოებისა და მზის ჩასვლისთვის.",
-
-    // Restaurant Section
     "restaurant.tag": "გასტრონომია",
     "restaurant.title": "რესტორანი და ტერასა «Aura Del Mar»",
     "restaurant.subtitle": "ნამდვილი აჭარული და ქართული სამზარეულო ნატურალური ფერმერული პროდუქტებით",
@@ -339,26 +524,18 @@ const I18N = {
     "restaurant.dish2_desc": "ვაზის ნასხლავზე შემწვარი წვნიანი ხორცი საწებლით",
     "restaurant.dish3": "ქართული ღვინოები",
     "restaurant.dish3_desc": "საფერავი, რქაწითელი და ქინძმარაული ქვევრიდან",
-
-    // Amenities Section
     "amenities.tag": "სტუმრების კომფორტი",
     "amenities.title": "ყველა პირობა იდეალური დასვენებისთვის",
     "amenities.subtitle": "Aura Del Mar-ში ყველაფერია როგორც ხანგრძლივი დასვენებისთვის, ისე დისტანციური მუშაობისთვის.",
-
-    // Reviews Section
     "reviews.tag": "სტუმრების შთაბეჭდილებები",
     "reviews.title": "სტუმრების შეფასებები",
     "reviews.subtitle": "ვამაყობთ საერთაშორისო პორტალებზე მიღებული უმაღლესი ქულებით",
-
-    // Location Section
     "location.tag": "მდებარეობა",
     "location.title": "როგორ მოხვიდეთ სასტუმრომდე",
     "location.subtitle": "ბათუმი, ახალი ბულვარი, გიორგი ანწუხელიძის ქ. 31",
     "location.dist_title": "მანძილი ობიექტებამდე:",
     "location.yandex_btn": "Yandex რუკაზე ნახვა",
     "location.google_btn": "Google Maps-ზე ნახვა",
-
-    // FAQ Section
     "faq.tag": "ხშირი კითხვები",
     "faq.title": "პასუხები პოპულარულ შეკითხვებზე",
     "faq.q1": "როდისაა შესვლა და გასვლა?",
@@ -373,8 +550,6 @@ const I18N = {
     "faq.a5": "ჩვენ გვიყვარს ცხოველები! პატარა შინაური ცხოველების განთავსება შესაძლებელია წინასწარი შეთანხმებით.",
     "faq.q6": "გადახდის რა მეთოდები მოქმედებს?",
     "faq.a6": "გადახდა შესაძლებელია საბანკო ბარათებით (Visa, Mastercard), ნაღდი ფულით (GEL, USD, EUR, RUB) ან საბანკო გადარიცხვით.",
-
-    // Footer
     "footer.brand_sub": "Boutique Hotel & Restaurant • Batumi",
     "footer.desc": "მყუდრო ბუტიკ-სასტუმრო 12 ნომრით ზღვიდან 250 მეტრში ბათუმის ახალ ბულვარზე. ავთენტური რესტორანი, ბაღი, პანორამული ტერასა და გულთბილი მასპინძლობა.",
     "footer.nav_title": "ნავიგაცია",
@@ -382,11 +557,126 @@ const I18N = {
     "footer.hours_title": "სამუშაო საათები",
     "footer.hours_desc": "მიღება: 24/7 უწყვეტად<br>რესტორანი: 08:30 – 23:00<br>საუზმე: 09:00 – 11:00",
     "footer.rights": "ყველა უფლება დაცულია. სასტუმრო Aura Del Mar Batumi-ს ოფიციალური საიტი.",
-    "footer.wa_label": "WhatsApp ჩატი"
+    "footer.wa_label": "WhatsApp ჩატი",
+    "hero.checkin": "შესვლა",
+    "hero.checkout": "გასვლა",
+    "hero.guests": "სტუმრები",
+    "hero.guest_1": "1 სტუმარი",
+    "hero.guest_2": "2 სტუმარი",
+    "hero.guest_3": "3 სტუმარი",
+    "hero.guest_4": "4 სტუმარი",
+    "hero.room_type": "ნომრის ტიპი",
+    "hero.search_btn": "ფასების შემოწმება",
+    "about.stat_rooms": "მყუდრო ნომერი",
+    "about.stat_sea": "ზღვამდე",
+    "about.stat_rating": "უმაღლესი რეიტინგი",
+    "restaurant.breakfast_time": "საუზმე 09:00-დან 11:00-მდე",
+    "restaurant.breakfast_free": "უფასო სასტუმროს ყველა სტუმრისთვის",
+    "restaurant.tag2": "გასტრონომია & ლაუნჯი",
+    "restaurant.flavour_title": "დაუვიწყარი გემოები",
+    "restaurant.flavour_desc": "ჩვენი რესტორანი გთავაზობთ როგორც გემრიელ საუზმეს, ასევე მდიდარ მენიუს სადილსა და ვახშამზე. დააგემოვნეთ ნამდვილი აჭარული ხაჭაპური, წვნიანი ხინკალი და მაყალზე შემწვარი მწვადი ქართულ ღვინოსთან ერთად.",
+    "restaurant.book_with_meal": "ნომრის დაჯავშნა კვებით",
+    "restaurant.dish4": "კარაოკე და ცოცხალი მუსიკა",
+    "amenities.wifi_title": "უფასო Wi-Fi",
+    "amenities.wifi_desc": "მაღალსიჩქარიანი უკაბელო ინტერნეტი მთელ ტერიტორიაზე და ყველა ნომერში.",
+    "amenities.parking_title": "საკუთარი პარკინგი",
+    "amenities.parking_desc": "უფასო დაცული პარკირების ადგილი 24/7 ვიდეოკონტროლით.",
+    "amenities.reception_title": "მიღება 24/7",
+    "amenities.reception_desc": "სადღეღამისო რეგისტრაცია და კონსიერჟ-სერვისი: დახმარება ბარგთან და ტრანსფერთან.",
+    "amenities.tours_title": "ტურები საქართველოში",
+    "amenities.tours_desc": "ინდივიდუალური ექსკურსიები: აჭარის ჩანჩქერები, მარტვილის კანიონი, სვანეთი და მარნები.",
+    "amenities.transfer_title": "აეროპორტის ტრანსფერი",
+    "amenities.transfer_desc": "ბათუმის საერთაშორისო აეროპორტიდან მხოლოდ 600 მეტრში. დაგხვდებით ტერმინალთან.",
+    "amenities.conference_title": "საკონფერენციო დარბაზი",
+    "amenities.conference_desc": "ნათელი და კომფორტული სივრცე საქმიანი შეხვედრებისა და ღონისძიებებისთვის.",
+    "amenities.terrace_title": "საზაფხულო ტერასა",
+    "amenities.terrace_desc": "ღია დასასვენებელი ზონა შეზლონგებითა და ულამაზესი ხედებით ზღვაზე.",
+    "amenities.laundry_title": "სამრეცხაო და დაუთოება",
+    "amenities.laundry_desc": "სარეცხი მანქანა და უთო თქვენი სამოსის იდეალური სისუფთავისთვის.",
+    "reviews.r1_text": "«მასპინძელი უმაღლესი დონისაა! ნომერში სისუფთავეა, სანაპირომდე 3 წუთის სავალია. ფანჯრიდან ჩანს თვითმფრინავების დაშვება ზღვაზე — საოცარი სანახაობაა, თან ოთახში სრული სიჩუმეა!»",
+    "reviews.r1_author": "არტემი",
+    "reviews.r1_sub": "დადასტურებული ჯავშანი",
+    "reviews.r2_text": "«შესანიშნავი ადგილი ბათუმში! ძალიან თბილი დახვედრა, თითქოს ოჯახში ჩამოხვედი. რესტორანი ადგილზევეა, უგემრიელესი საუზმით. აივნის ქონა დიდი პლუსია!»",
+    "reviews.r2_author": "ნინო კ.",
+    "reviews.r2_sub": "ინდივიდუალური მოგზაური",
+    "reviews.r3_text": "«საუკეთესო ფასი და ხარისხი! სასტუმრო პატარაა, მხოლოდ 12 ნომერი, ამიტომ სიმშვიდე და სისუფთავეა. ზღვა ახლოსაა, კონდიციონერი და ტელევიზორი იდეალურად მუშაობს.»",
+    "reviews.r3_author": "ალექსანდრე და მარინა",
+    "reviews.r3_sub": "ოჯახური დასვენება",
+    "location.near_title": "რა მდებარეობს ახლოს:",
+    "location.map_title": "ბათუმის ინტერაქტიული რუკა",
+    "booking.modal_title": "ნომრის დაჯავშნა Aura Del Mar-ში",
+    "booking.modal_subtitle": "საუკეთესო ფასის გარანტია სასტუმროსგან • საუზმე შედის • წინასწარი გადახდის გარეშე",
+    "booking.step1_tab": "თარიღები და სტუმრები",
+    "booking.step2_tab": "ნომრის არჩევა",
+    "booking.step3_tab": "დამატებითი სერვისები",
+    "booking.step4_tab": "სტუმრის მონაცემები",
+    "booking.step5_tab": "დადასტურება",
+    "booking.step1_title": "აირჩიეთ თარიღები",
+    "booking.step1_desc": "მიუთითეთ შესვლისა და გასვლის თარიღები და სტუმრების რაოდენობა.",
+    "booking.checkin_label": "📅 შესვლის თარიღი (14:00-დან)",
+    "booking.checkout_label": "📅 გასვლის თარიღი (12:00-მდე)",
+    "booking.adults_label": "👤 მოზრდილები (12+ წელი)",
+    "booking.adult_1": "1 მოზრდილი",
+    "booking.adult_2": "2 მოზრდილი",
+    "booking.adult_3": "3 მოზრდილი",
+    "booking.adult_4": "4 მოზრდილი",
+    "booking.children_label": "🧒 ბავშვები (12 წლამდე)",
+    "booking.child_0": "ბავშვების გარეშე",
+    "booking.child_1": "1 ბავშვი",
+    "booking.child_2": "2 ბავშვი",
+    "booking.btn_next_room": "გაგრძელება: ნომრის არჩევა",
+    "booking.step2_title": "აირჩიეთ ნომრის კატეგორია",
+    "booking.step2_desc": "Aura Del Mar-ის ყველა ნომერი აღჭურვილია კონდიციონერით, საკუთარი აბაზანითა და აივნით.",
+    "booking.btn_prev": "← უკან",
+    "booking.btn_next_srv": "გაგრძელება: სერვისები",
+    "booking.step3_title": "დამატებითი სერვისები",
+    "booking.step3_desc": "გახადეთ თქვენი დასვენება ბათუმში კიდევ უფრო სასიამოვნო.",
+    "booking.btn_next_guest": "გაგრძელება: მონაცემები",
+    "booking.step4_title": "ჯავშნის მონაცემები",
+    "booking.step4_desc": "ბარათით წინასწარი გადახდა არ მოითხოვება. გადახდა ხდება ადგილზე შესვლისას.",
+    "booking.guest_name_label": "სახელი და გვარი *",
+    "booking.guest_name_ph": "გიორგი ბერიძე",
+    "booking.guest_phone_label": "ტელეფონი / WhatsApp *",
+    "booking.guest_phone_ph": "+995 5XX XXX XXX",
+    "booking.guest_email_label": "ელექტრონული ფოსტა (ვაუჩერისთვის)",
+    "booking.guest_email_ph": "example@mail.com",
+    "booking.guest_req_label": "სურვილები (სართული, საბავშვო საწოლი, ტრანსფერი და ა.შ.)",
+    "booking.guest_req_ph": "მაგალითად: მაღალი სართული ზღვის ხედით...",
+    "booking.promo_ph": "გაქვთ პრომოკოდი? (მაგ. AURADELMAR10)",
+    "booking.promo_btn": "გამოყენება",
+    "booking.btn_confirm": "ჯავშნის დადასტურება",
+    "booking.step5_title": "ჯავშანი წარმატებით დადასტურდა!",
+    "booking.step5_desc": "ნომერი დარეზერვირებულია. გადახდა ხდება სასტუმროში ჩამოსვლისას. ქვემოთ მოცემულია თქვენი ელექტრონული ვაუჩერი.",
+    "booking.vouch_official": "ოფიციალური ჯავშნის ვაუჩერი",
+    "booking.vouch_guest": "სტუმარი",
+    "booking.vouch_phone": "ტელეფონი / WhatsApp",
+    "booking.vouch_room": "ნომერი",
+    "booking.vouch_dates": "ყოფნის თარიღები",
+    "booking.vouch_meal": "კვება",
+    "booking.vouch_breakfast_inc": "საუზმე შედის (09:00 - 11:00)",
+    "booking.vouch_extra": "დამატებით",
+    "booking.vouch_total_label": "სულ გადასახდელი შესვლისას",
+    "booking.vouch_print_btn": "🖨 ბეჭდვა / შენახვა",
+    "booking.vouch_wa_btn": "💬 ასლის WhatsApp-ში გაგზავნა",
+    "booking.vouch_done_btn": "დასრულება",
+    "summary.title": "თქვენი არჩევანი",
+    "summary.hotel_badge": "Aura Del Mar 3*",
+    "summary.sub_loc": "ახალი ბულვარი • 250 მ ზღვამდე",
+    "summary.dates": "თარიღები:",
+    "summary.nights": "ღამეები:",
+    "summary.guests": "სტუმრები:",
+    "summary.room_subtotal": "ცხოვრება:",
+    "summary.services_subtotal": "დამატებითი:",
+    "summary.discount": "ფასდაკლება:",
+    "summary.perk_breakfast": "საუზმე შედის ფასში",
+    "summary.perk_cancel": "უფასო გაუქმება 24 სთ-ით ადრე",
+    "summary.perk_pay": "გადახდა ადგილზე",
+    "summary.grand_total": "სულ:",
+    "summary.taxes_note": "ყველა გადასახადის ჩათვლით",
+    "mob.room_price": "ნომრის ფასი",
+    "mob.book_btn": "დაჯავშნა"
   },
-
   "tr": {
-    // Topbar & Nav
     "topbar.address": "Batum, Giorgi Antsukhelidze Cad. 31 (Denize 250 m)",
     "topbar.reception": "Resepsiyon 24/7",
     "topbar.direct_booking": "Doğrudan Rezervasyon • Komisyonsuz",
@@ -402,8 +692,6 @@ const I18N = {
     "nav.faq": "SSS",
     "nav.book": "Rezervasyon Yap",
     "nav.choose_lang": "Dil Seçiniz:",
-
-    // Hero
     "hero.tag": "Karadeniz Sahilinde Butik Otel • Batum",
     "hero.title": "Otel <em>Aura Del Mar</em><br>Batum'un Kalbinde",
     "hero.desc": "12 odalı butik otelimizde Gürcü misafirperverliği, gurme restoran, panoramik teras ve büyüleyici uçak iniş manzarası sizi bekliyor.",
@@ -418,8 +706,6 @@ const I18N = {
     "hero.sea_card_desc": "Plaja sadece 3 dakika yürüyüş",
     "hero.cta_rooms": "Odaları İncele",
     "hero.cta_restaurant": "Restoranımız",
-
-    // Rooms Section
     "rooms.tag": "Oda Kataloğu ve Fiyatlar",
     "rooms.title": "Aura Del Mar Butik Odaları",
     "rooms.subtitle": "Sadece 12 seçkin oda. Her odada balkon, klima, hızlı Wi-Fi ve her sabah ücretsiz zengin kahvaltı mevcuttur.",
@@ -437,8 +723,6 @@ const I18N = {
     "rooms.wifi_tag": "📶 Wi-Fi 100 Mbps",
     "rooms.shower_tag": "🚿 Özel Duş",
     "rooms.balcony_tag": "🌿 Balkon",
-
-    // About Section
     "about.tag": "Butik Otel Hakkında",
     "about.title": "Konfor, Huzur ve Deniz Esintisi",
     "about.subtitle": "Aura Del Mar Oteli, kalabalık gökdelenlerden uzakta kişisel ilgi, hijyen ve ev konforu arayan misafirler için tasarlandı.",
@@ -452,8 +736,6 @@ const I18N = {
     "about.f3_desc": "Rattan mobilyalar, üzüm asmaları ve serin gölgeli huzurlu avlu.",
     "about.f4_title": "Uçak Manzarası",
     "about.f4_desc": "Gün batımında iniş yapan uçakları fotoğraflamak için Batum'un en ünlü noktası.",
-
-    // Restaurant Section
     "restaurant.tag": "Gastronomi",
     "restaurant.title": "Aura Del Mar Restoran & Teras",
     "restaurant.subtitle": "Taze çiftlik ürünleriyle hazırlanan geleneksel Acaristan ve Gürcü mutfağı",
@@ -466,26 +748,18 @@ const I18N = {
     "restaurant.dish2_desc": "Bağ çubukları üzerinde pişmiş marine edilmiş leziz et ve sacebeli sosu",
     "restaurant.dish3": "Gürcü Şarapları",
     "restaurant.dish3_desc": "Kvevride yıllandırılmış Saperavi, Rkatsiteli ve Kindzmarauli",
-
-    // Amenities Section
     "amenities.tag": "Misafir Konforu",
     "amenities.title": "Tatiliniz İçin Eksiksiz Otel Olanakları",
     "amenities.subtitle": "Aura Del Mar'da uzun süreli konaklama, uzaktan çalışma ve keyifli bir Batum tatili için gereken her şey mevcuttur.",
-
-    // Reviews Section
     "reviews.tag": "Misafir Deneyimleri",
     "reviews.title": "Doğrulanmış Misafir Yorumları",
     "reviews.subtitle": "Uluslararası rezervasyon portallarındaki yüksek puanlarımızla gurur duyuyoruz",
-
-    // Location Section
     "location.tag": "Konum ve Ulaşım",
     "location.title": "Otele Nasıl Ulaşılır?",
     "location.subtitle": "Batum, Yeni Bulvar, Giorgi Antsukhelidze Cad. 31",
     "location.dist_title": "Önemli Noktalara Mesafe:",
     "location.yandex_btn": "Yandex Haritalarda Aç",
     "location.google_btn": "Google Haritalarda Aç",
-
-    // FAQ Section
     "faq.tag": "Sıkça Sorulan Sorular",
     "faq.title": "Misafirlerimizin En Çok Merak Ettikleri",
     "faq.q1": "Giriş ve çıkış saatleri nedir?",
@@ -500,8 +774,6 @@ const I18N = {
     "faq.a5": "Evcil hayvan dostuyuz! Küçük dostlarımız rezervasyon sırasında önceden bildirilmek kaydıyla kabul edilmektedir.",
     "faq.q6": "Hangi ödeme yöntemleri geçerlidir?",
     "faq.a6": "Kredi kartları (Visa, Mastercard), girişte nakit (GEL, USD, EUR, RUB) veya banka havalesi ile ödeme kabul edilmektedir.",
-
-    // Footer
     "footer.brand_sub": "Boutique Hotel & Restaurant • Batumi",
     "footer.desc": "Batum Yeni Bulvar'da denize 250 m mesafede 12 odalı butik otel. Gurme restoran, özel bahçe, panoramik teras ve samimi Gürcü misafirperverliği.",
     "footer.nav_title": "Menü",
@@ -509,43 +781,157 @@ const I18N = {
     "footer.hours_title": "Çalışma Saatleri",
     "footer.hours_desc": "Resepsiyon: 24/7 Kesintisiz<br>Restoran: 08:30 – 23:00<br>Kahvaltı: 09:00 – 11:00",
     "footer.rights": "Tüm hakları saklıdır. Aura Del Mar Batumi Oteli resmi web sitesi.",
-    "footer.wa_label": "WhatsApp Sohbeti"
+    "footer.wa_label": "WhatsApp Sohbeti",
+    "hero.checkin": "Giriş",
+    "hero.checkout": "Çıkış",
+    "hero.guests": "Misafirler",
+    "hero.guest_1": "1 Misafir",
+    "hero.guest_2": "2 Misafir",
+    "hero.guest_3": "3 Misafir",
+    "hero.guest_4": "4 Misafir",
+    "hero.room_type": "Oda Tipi",
+    "hero.search_btn": "Fiyatları Gör",
+    "about.stat_rooms": "konforlu oda",
+    "about.stat_sea": "denize mesafe",
+    "about.stat_rating": "yüksek puan",
+    "restaurant.breakfast_time": "Kahvaltı 09:00 - 11:00",
+    "restaurant.breakfast_free": "Tüm konaklayan misafirler için ücretsiz",
+    "restaurant.tag2": "Gastronomi & Lounge",
+    "restaurant.flavour_title": "Unutulmaz Lezzetler",
+    "restaurant.flavour_desc": "Restoranımız her sabah zengin ev yapımı kahvaltının yanı sıra öğle ve akşam yemekleri için à la carte menü sunmaktadır. Çıtır hamurlu meşhur Acaristan haçapurisi, el açması sulu hinkali ve mangalda taze pişmiş Gürcü şaşlığını tadın.",
+    "restaurant.book_with_meal": "Yemekli Oda Rezervasyonu",
+    "restaurant.dish4": "Karaoke ve Canlı Akşamlar",
+    "amenities.wifi_title": "Ücretsiz Hızlı Wi-Fi",
+    "amenities.wifi_desc": "Otel genelinde ve her odada iş ve tatil için yüksek hızlı kablosuz internet erişimi.",
+    "amenities.parking_title": "Özel Otopark",
+    "amenities.parking_desc": "Misafirlerimizin araçları için 24/7 kamera gözetimli ücretsiz güvenli otopark alanı.",
+    "amenities.reception_title": "24/7 Resepsiyon",
+    "amenities.reception_desc": "Günün her saati giriş imkanı, bagaj ve havalimanı transfer desteği sunan konsiyerj hizmeti.",
+    "amenities.tours_title": "Gürcistan Turları",
+    "amenities.tours_desc": "Acaristan şelaleleri, Martvili kanyonu, Svaneti ve butik şarap evlerine özel rehberli turlar.",
+    "amenities.transfer_title": "Havalimanı Transferi",
+    "amenities.transfer_desc": "Batum Uluslararası Havalimanı'na sadece 600 m mesafede. Terminal kapısında özel karşılama.",
+    "amenities.conference_title": "Toplantı Salonu",
+    "amenities.conference_desc": "İş toplantıları, eğitimler ve etkinlikler için aydınlık ve geniş salon.",
+    "amenities.terrace_title": "Yaz Terası",
+    "amenities.terrace_desc": "Şezlonglar ve Karadeniz gün batımı manzaralı açık hava dinlenme terası.",
+    "amenities.laundry_title": "Çamaşırhane ve Ütü",
+    "amenities.laundry_desc": "Giysilerinizin tazeliği ve bakımı için modern çamaşır yıkama ve ütü olanakları.",
+    "reviews.r1_text": "\"Ev sahibesi fevkaladenin üzerindeydi! Oda tertemiz, çarşaflar mis gibi. Sahile 3 dakika yürüyüş mesafesinde. Pencereden deniz üzerinde alçalan uçaklar harika bir manzara sunuyor, üstelik odalar çok sessiz!\"",
+    "reviews.r1_author": "Artem",
+    "reviews.r1_sub": "Doğrulanmış Rezervasyon",
+    "reviews.r2_text": "\"Batum'da harika bir butik otel! Sıcak ve samimi bir karşılama, adeta sevdiğiniz akrabalarınızı ziyaret etmiş gibi. Lezzetli kahvaltı ve odada özel balkon büyük bir artı!\"",
+    "reviews.r2_author": "Nino K.",
+    "reviews.r2_sub": "Tek Başına Seyahat",
+    "reviews.r3_text": "\"Mükemmel fiyat-kalite dengesi! Sadece 12 oda olduğu için sessiz, huzurlu ve çok temiz. Deniz hemen yanı başında, klima ve Smart TV kusursuz çalıştı. Kesinlikle tekrar geleceğiz!\"",
+    "reviews.r3_author": "Aleksander & Marina",
+    "reviews.r3_sub": "Aile Tatili",
+    "location.near_title": "Yakın Çevre:",
+    "location.map_title": "Batum İnteraktif Haritası",
+    "booking.modal_title": "Aura Del Mar Doğrudan Rezervasyon",
+    "booking.modal_subtitle": "Otelden En İyi Fiyat Garantisi • Kahvaltı Dahil • Ön Ödemesiz",
+    "booking.step1_tab": "Tarihler ve Misafirler",
+    "booking.step2_tab": "Oda Seçimi",
+    "booking.step3_tab": "Ek Hizmetler",
+    "booking.step4_tab": "Misafir Bilgileri",
+    "booking.step5_tab": "Onay",
+    "booking.step1_title": "Konaklama Tarihlerini Seçin",
+    "booking.step1_desc": "Doğru fiyat hesaplaması için giriş-çıkış tarihlerini ve kişi sayısını belirleyin.",
+    "booking.checkin_label": "📅 Giriş Tarihi (14:00'ten itibaren)",
+    "booking.checkout_label": "📅 Çıkış Tarihi (12:00'ye kadar)",
+    "booking.adults_label": "👤 Yetişkinler (12+ yaş)",
+    "booking.adult_1": "1 Yetişkin",
+    "booking.adult_2": "2 Yetişkin",
+    "booking.adult_3": "3 Yetişkin",
+    "booking.adult_4": "4 Yetişkin",
+    "booking.children_label": "🧒 Çocuklar (12 yaş altı)",
+    "booking.child_0": "Çocuksuz",
+    "booking.child_1": "1 Çocuk",
+    "booking.child_2": "2 Çocuk",
+    "booking.btn_next_room": "Devam: Oda Seçimi",
+    "booking.step2_title": "Oda Kategorisini Seçin",
+    "booking.step2_desc": "Aura Del Mar'daki tüm odalar klimalı, özel banyolu ve balkonludur.",
+    "booking.btn_prev": "← Geri",
+    "booking.btn_next_srv": "Devam: Ek Hizmetler",
+    "booking.step3_title": "Ekstra Hizmetler ve İkramlar",
+    "booking.step3_desc": "Batum'daki konaklamanızı daha da konforlu hale getirin (tüm seçenekler isteğe bağlıdır).",
+    "booking.btn_next_guest": "Devam: Misafir Bilgileri",
+    "booking.step4_title": "Rezervasyon Bilgileri",
+    "booking.step4_desc": "Kart ile ön ödeme gerekmez. Ödeme giriş sırasında otelde yapılır.",
+    "booking.guest_name_label": "Ad Soyad *",
+    "booking.guest_name_ph": "Ahmet Yılmaz",
+    "booking.guest_phone_label": "İletişim Telefonu / WhatsApp *",
+    "booking.guest_phone_ph": "+995 5XX XXX XXX",
+    "booking.guest_email_label": "E-posta Adresi (makbuz için)",
+    "booking.guest_email_ph": "example@mail.com",
+    "booking.guest_req_label": "Özel Talepler (yüksek kat, bebek yatağı, transfer vb.)",
+    "booking.guest_req_ph": "Örneğin: deniz manzaralı yüksek kat veya sessiz avlu odası...",
+    "booking.promo_ph": "Promosyon kodunuz var mı? (ör. AURADELMAR10)",
+    "booking.promo_btn": "Uygula",
+    "booking.btn_confirm": "Rezervasyonu Onayla",
+    "booking.step5_title": "Rezervasyon Başarıyla Onaylandı!",
+    "booking.step5_desc": "Odanız ayrılmıştır. Ödeme varışta otelde gerçekleştirilir. Aşağıda elektronik makbuzunuz yer almaktadır.",
+    "booking.vouch_official": "Resmi Doğrudan Rezervasyon Makbuzu",
+    "booking.vouch_guest": "Misafir",
+    "booking.vouch_phone": "Telefon / WhatsApp",
+    "booking.vouch_room": "Oda",
+    "booking.vouch_dates": "Konaklama Tarihleri",
+    "booking.vouch_meal": "Yemek Planı",
+    "booking.vouch_breakfast_inc": "Kahvaltı Dahil (09:00 - 11:00)",
+    "booking.vouch_extra": "Ek Hizmetler",
+    "booking.vouch_total_label": "Girişte Ödenecek Tutar",
+    "booking.vouch_print_btn": "🖨 Yazdır / Kaydet",
+    "booking.vouch_wa_btn": "💬 Kopyayı WhatsApp'a Gönder",
+    "booking.vouch_done_btn": "Tamamlandı",
+    "summary.title": "Seçiminiz",
+    "summary.hotel_badge": "Aura Del Mar 3*",
+    "summary.sub_loc": "Yeni Bulvar • Denize 250 m",
+    "summary.dates": "Tarihler:",
+    "summary.nights": "Gece:",
+    "summary.guests": "Misafir:",
+    "summary.room_subtotal": "Konaklama:",
+    "summary.services_subtotal": "Ek Hizmetler:",
+    "summary.discount": "İndirim:",
+    "summary.perk_breakfast": "Günlük Kahvaltı Dahil",
+    "summary.perk_cancel": "24 Saate Kadar Ücretsiz İptal",
+    "summary.perk_pay": "Girişte Ödeme İmkanı",
+    "summary.grand_total": "Toplam:",
+    "summary.taxes_note": "Tüm vergiler ve otel ücretleri dahildir",
+    "mob.room_price": "Oda Fiyatı",
+    "mob.book_btn": "Rezervasyon Yap"
   }
 };
 
 let currentLanguage = localStorage.getItem('auradelmar_lang') || 'ru';
 
 function t(key, lang = currentLanguage) {
-  if (I18N[lang] && I18N[lang][key] !== undefined) {
+  if (I18N[lang] && I18N[lang][key]) {
     return I18N[lang][key];
   }
-  if (I18N['ru'] && I18N['ru'][key] !== undefined) {
+  if (I18N['ru'] && I18N['ru'][key]) {
     return I18N['ru'][key];
   }
   return key;
 }
 
 function setLanguage(lang) {
-  if (!I18N[lang]) lang = 'ru';
+  if (!I18N[lang]) return;
   currentLanguage = lang;
   localStorage.setItem('auradelmar_lang', lang);
+
+  // Update HTML tag
   document.documentElement.lang = lang;
+  document.body.classList.toggle('lang-ka', lang === 'ka');
 
-  if (lang === 'ka') {
-    document.body.classList.add('lang-ka');
-  } else {
-    document.body.classList.remove('lang-ka');
-  }
-
-  // Update text content with data-i18n
+  // Update all text nodes with data-i18n
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     const translation = t(key, lang);
     if (translation !== key) {
-      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-        el.value = translation;
-      } else {
+      if (translation.includes('<') && translation.includes('>')) {
         el.innerHTML = translation;
+      } else {
+        el.textContent = translation;
       }
     }
   });

@@ -1,5 +1,5 @@
 /**
- * Hotel Mimino Batumi - Booking Engine Logic
+ * Hotel Aura Del Mar Batumi - Booking Engine Logic
  * Handles interactive booking modal, price calculation, validation & voucher generation
  */
 
@@ -15,7 +15,7 @@ class MiminoBookingEngine {
       selectedServices: new Set(),
       promoCode: "",
       discountPercent: 0,
-      currentCurrency: "RUB",
+      currentCurrency: localStorage.getItem('auradelmar_curr') || 'GEL',
       guest: {
         name: "",
         phone: "",
@@ -46,6 +46,20 @@ class MiminoBookingEngine {
     const parts = dateStr.split('-');
     if (parts.length !== 3) return dateStr;
     const d = new Date(parts[0], parts[1] - 1, parts[2]);
+    const lang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'ru';
+    
+    if (lang === 'en') {
+      const monthsEn = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      return `${monthsEn[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+    }
+    if (lang === 'ka') {
+      const monthsKa = ['იან', 'თებ', 'მარ', 'აპრ', 'მაი', 'ივნ', 'ივლ', 'აგვ', 'სექ', 'ოქტ', 'ნოე', 'დეკ'];
+      return `${d.getDate()} ${monthsKa[d.getMonth()]} ${d.getFullYear()}`;
+    }
+    if (lang === 'tr') {
+      const monthsTr = ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'];
+      return `${d.getDate()} ${monthsTr[d.getMonth()]} ${d.getFullYear()}`;
+    }
     const months = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
     return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
   }
@@ -56,6 +70,13 @@ class MiminoBookingEngine {
     this.renderRoomChoices();
     this.renderServiceChoices();
     this.updateSummary();
+
+    // Re-render when language changes
+    window.addEventListener('languageChanged', () => {
+      this.renderRoomChoices();
+      this.renderServiceChoices();
+      this.updateSummary();
+    });
   }
 
   cacheElements() {
@@ -134,7 +155,6 @@ class MiminoBookingEngine {
     if (this.inCheckIn) {
       this.inCheckIn.addEventListener('change', () => {
         this.state.checkIn = this.inCheckIn.value;
-        // ensure checkout is after checkin
         if (this.state.checkOut <= this.state.checkIn) {
           const nextDay = new Date(this.state.checkIn);
           nextDay.setDate(nextDay.getDate() + 1);
@@ -267,19 +287,19 @@ class MiminoBookingEngine {
   }
 
   goNext() {
+    const lang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'ru';
     if (this.state.step === 1) {
-      // Validate dates
       if (!this.state.checkIn || !this.state.checkOut) {
-        alert('Пожалуйста, выберите даты заезда и выезда');
+        alert(lang === 'en' ? 'Please select check-in and check-out dates' : lang === 'ka' ? 'გთხოვთ აირჩიოთ შესვლისა და გასვლის თარიღები' : lang === 'tr' ? 'Lütfen giriş ve çıkış tarihlerini seçin' : 'Пожалуйста, выберите даты заезда и выезда');
         return;
       }
       if (this.getNights() <= 0) {
-        alert('Дата выезда должна быть позже даты заезда');
+        alert(lang === 'en' ? 'Check-out date must be after check-in date' : lang === 'ka' ? 'გასვლის თარიღი უნდა იყოს შესვლის თარიღის შემდეგ' : lang === 'tr' ? 'Çıkış tarihi giriş tarihinden sonra olmalıdır' : 'Дата выезда должна быть позже даты заезда');
         return;
       }
     } else if (this.state.step === 2) {
       if (!this.state.selectedRoomId) {
-        alert('Пожалуйста, выберите номер');
+        alert(lang === 'en' ? 'Please select a room' : lang === 'ka' ? 'გთხოვთ აირჩიოთ ნომერი' : lang === 'tr' ? 'Lütfen bir oda seçin' : 'Пожалуйста, выберите номер');
         return;
       }
     }
@@ -306,25 +326,30 @@ class MiminoBookingEngine {
     const container = document.getElementById('bookingRoomChoicesContainer');
     if (!container) return;
 
+    const lang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'ru';
+    const perNightText = lang === 'en' ? '/night' : lang === 'ka' ? '/ღამე' : lang === 'tr' ? '/gece' : '/ночь';
+
     container.innerHTML = MIMINO_CONFIG.rooms.map(room => {
-      const priceFormatted = this.formatCurrency(room.priceRUB);
+      const priceFormatted = this.formatCurrency(room.priceGEL);
       const isSelected = room.id === this.state.selectedRoomId;
+      const rInfo = (room.i18n && room.i18n[lang]) ? room.i18n[lang] : (room.i18n && room.i18n.ru ? room.i18n.ru : room);
+
       return `
         <div class="booking-room-choice-card ${isSelected ? 'selected' : ''}" data-room-select="${room.id}">
           <div class="choice-thumb">
-            <img src="${room.images[0].url}" alt="${room.title}" loading="lazy">
+            <img src="${room.images[0].url}" alt="${rInfo.title}" loading="lazy">
           </div>
           <div class="choice-info">
-            <h4>${room.title}</h4>
-            <p>${room.bed}</p>
+            <h4>${rInfo.title}</h4>
+            <p>${rInfo.bed}</p>
             <div class="choice-specs">
-              <span>📏 ${room.area} м²</span>
-              <span>👥 ${room.capacity}</span>
-              <span>🌊 ${room.view}</span>
+              <span>📏 ${room.area} m²</span>
+              <span>👥 ${rInfo.capacity}</span>
+              <span>🌊 ${rInfo.view}</span>
             </div>
           </div>
           <div class="choice-price-col">
-            <div class="choice-price-value">${priceFormatted} <small style="font-size:0.7rem; font-weight:normal; color:#8E8276;">/ночь</small></div>
+            <div class="choice-price-value">${priceFormatted} <small style="font-size:0.7rem; font-weight:normal; color:#8E8276;">${perNightText}</small></div>
             <div class="choice-radio-indicator"></div>
           </div>
         </div>
@@ -353,16 +378,19 @@ class MiminoBookingEngine {
     const container = document.getElementById('bookingServicesContainer');
     if (!container) return;
 
+    const lang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'ru';
+
     container.innerHTML = MIMINO_CONFIG.extraServices.map(srv => {
       const isSelected = this.state.selectedServices.has(srv.id);
-      const priceFormatted = this.formatCurrency(srv.priceRUB);
+      const sInfo = (srv.i18n && srv.i18n[lang]) ? srv.i18n[lang] : (srv.i18n && srv.i18n.ru ? srv.i18n.ru : { name: srv.name, desc: srv.description });
+      const priceFormatted = this.formatCurrency(srv.priceGEL);
       return `
         <div class="service-choice-item ${isSelected ? 'selected' : ''}" data-service-id="${srv.id}">
           <div class="service-left">
             <div class="service-checkbox">✓</div>
             <div class="service-info">
-              <h5>${srv.name}</h5>
-              <p>${srv.description}</p>
+              <h5>${sInfo.name}</h5>
+              <p>${sInfo.desc}</p>
             </div>
           </div>
           <div class="service-price">+${priceFormatted}</div>
@@ -389,7 +417,7 @@ class MiminoBookingEngine {
     const code = (this.inPromo ? this.inPromo.value : '').trim().toUpperCase();
     const feedback = document.getElementById('promoFeedback');
     
-    if (code === 'MIMINO10' || code === 'BATUMI' || code === 'WELCOME') {
+    if (code === 'AURADELMAR10' || code === 'MIMINO10' || code === 'BATUMI' || code === 'WELCOME') {
       this.state.discountPercent = 10;
       this.state.promoCode = code;
       if (feedback) {
@@ -402,7 +430,7 @@ class MiminoBookingEngine {
       if (feedback) feedback.textContent = '';
     } else {
       if (feedback) {
-        feedback.textContent = 'Неверный промокод. Попробуйте MIMINO10';
+        feedback.textContent = 'Неверный промокод. Попробуйте AURADELMAR10';
         feedback.style.color = 'var(--accent-wine)';
       }
     }
@@ -412,42 +440,47 @@ class MiminoBookingEngine {
   updateSummary() {
     const nights = this.getNights();
     const room = this.getSelectedRoom();
+    const lang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'ru';
+    const rInfo = (room.i18n && room.i18n[lang]) ? room.i18n[lang] : (room.i18n && room.i18n.ru ? room.i18n.ru : room);
 
     if (this.sumRoomImg) this.sumRoomImg.src = room.images[0].url;
-    if (this.sumRoomTitle) this.sumRoomTitle.textContent = room.title;
+    if (this.sumRoomTitle) this.sumRoomTitle.textContent = rInfo.title;
     if (this.sumDates) this.sumDates.textContent = `${this.formatDateHuman(this.state.checkIn)} — ${this.formatDateHuman(this.state.checkOut)}`;
-    if (this.sumNights) this.sumNights.textContent = `${nights} ${this.pluralNights(nights)}`;
+    if (this.sumNights) this.sumNights.textContent = `${nights} ${this.pluralNights(nights, lang)}`;
     
-    const guestsText = `${this.state.adults} взр.` + (this.state.children > 0 ? `, ${this.state.children} дет.` : '');
+    const adultWord = lang === 'en' ? 'adl.' : lang === 'ka' ? 'ზრდ.' : lang === 'tr' ? 'yetiş.' : 'взр.';
+    const childWord = lang === 'en' ? 'ch.' : lang === 'ka' ? 'ბავშ.' : lang === 'tr' ? 'çoc.' : 'дет.';
+    const guestsText = `${this.state.adults} ${adultWord}` + (this.state.children > 0 ? `, ${this.state.children} ${childWord}` : '');
     if (this.sumGuests) this.sumGuests.textContent = guestsText;
 
-    // Calculate prices in RUB first
-    const roomSubtotalRUB = room.priceRUB * nights;
+    // Calculate prices in GEL base
+    const roomPriceGEL = room.priceGEL || 160;
+    const roomSubtotalGEL = roomPriceGEL * nights;
     
-    let servicesTotalRUB = 0;
+    let servicesTotalGEL = 0;
     this.state.selectedServices.forEach(sId => {
       const srv = MIMINO_CONFIG.extraServices.find(s => s.id === sId);
-      if (srv) servicesTotalRUB += srv.priceRUB;
+      if (srv) servicesTotalGEL += (srv.priceGEL || 0);
     });
 
-    const discountRUB = (roomSubtotalRUB * this.state.discountPercent) / 100;
-    const grandTotalRUB = roomSubtotalRUB - discountRUB + servicesTotalRUB;
+    const discountGEL = (roomSubtotalGEL * this.state.discountPercent) / 100;
+    const grandTotalGEL = roomSubtotalGEL - discountGEL + servicesTotalGEL;
 
-    if (this.sumRoomTotal) this.sumRoomTotal.textContent = this.formatCurrency(roomSubtotalRUB);
-    if (this.sumServicesTotal) this.sumServicesTotal.textContent = this.formatCurrency(servicesTotalRUB);
+    if (this.sumRoomTotal) this.sumRoomTotal.textContent = this.formatCurrency(roomSubtotalGEL);
+    if (this.sumServicesTotal) this.sumServicesTotal.textContent = this.formatCurrency(servicesTotalGEL);
     
     if (this.sumDiscountRow) {
       if (this.state.discountPercent > 0) {
         this.sumDiscountRow.style.display = 'flex';
-        if (this.sumDiscountVal) this.sumDiscountVal.textContent = `-${this.formatCurrency(discountRUB)} (10%)`;
+        if (this.sumDiscountVal) this.sumDiscountVal.textContent = `-${this.formatCurrency(discountGEL)} (${this.state.discountPercent}%)`;
       } else {
         this.sumDiscountRow.style.display = 'none';
       }
     }
 
-    if (this.sumGrandTotal) this.sumGrandTotal.textContent = this.formatCurrency(grandTotalRUB);
+    if (this.sumGrandTotal) this.sumGrandTotal.textContent = this.formatCurrency(grandTotalGEL);
 
-    // Also update services choice prices if currency changed
+    // Refresh service choice prices
     this.refreshServicePriceLabels();
   }
 
@@ -457,22 +490,28 @@ class MiminoBookingEngine {
       const srv = MIMINO_CONFIG.extraServices.find(s => s.id === sId);
       if (srv) {
         const el = item.querySelector('.service-price');
-        if (el) el.textContent = `+${this.formatCurrency(srv.priceRUB)}`;
+        if (el) el.textContent = `+${this.formatCurrency(srv.priceGEL)}`;
       }
     });
   }
 
-  pluralNights(n) {
+  pluralNights(n, lang = 'ru') {
+    if (lang === 'en') return n === 1 ? 'night' : 'nights';
+    if (lang === 'ka') return 'ღამე';
+    if (lang === 'tr') return 'gece';
     if (n % 10 === 1 && n % 100 !== 11) return 'ночь';
     if ([2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100)) return 'ночи';
     return 'ночей';
   }
 
-  formatCurrency(amountRUB) {
-    const curr = MIMINO_CONFIG.currencies[this.state.currentCurrency] || MIMINO_CONFIG.currencies.RUB;
-    const converted = Math.round(amountRUB * curr.rate);
-    const formattedNum = converted.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-    return `${curr.prefix}${formattedNum}${curr.suffix}`;
+  formatCurrency(amountGEL) {
+    const curr = MIMINO_CONFIG.currencies[this.state.currentCurrency] || MIMINO_CONFIG.currencies.GEL;
+    const converted = Math.round(amountGEL * curr.rate);
+    if (this.state.currentCurrency === 'GEL') return `${converted} ₾`;
+    if (this.state.currentCurrency === 'RUB') return `${converted.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')} ₽`;
+    if (this.state.currentCurrency === 'USD') return `$${converted}`;
+    if (this.state.currentCurrency === 'EUR') return `€${converted}`;
+    return `${converted} ${curr.symbol}`;
   }
 
   setCurrency(currCode) {
@@ -483,7 +522,6 @@ class MiminoBookingEngine {
   }
 
   processConfirmation() {
-    // Read guest form
     const name = (this.inName ? this.inName.value : '').trim();
     const phone = (this.inPhone ? this.inPhone.value : '').trim();
     const email = (this.inEmail ? this.inEmail.value : '').trim();
@@ -498,7 +536,7 @@ class MiminoBookingEngine {
     
     // Generate Booking reference
     const randomNum = Math.floor(10000 + Math.random() * 90000);
-    this.state.bookingRef = `MIM-BAT-${randomNum}`;
+    this.state.bookingRef = `AURA-BAT-${randomNum}`;
 
     this.renderVoucher();
     this.goToStep(5);
@@ -507,22 +545,28 @@ class MiminoBookingEngine {
   renderVoucher() {
     const room = this.getSelectedRoom();
     const nights = this.getNights();
+    const lang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'ru';
+    const rInfo = (room.i18n && room.i18n[lang]) ? room.i18n[lang] : (room.i18n && room.i18n.ru ? room.i18n.ru : room);
     
     let servicesList = [];
     this.state.selectedServices.forEach(sId => {
       const srv = MIMINO_CONFIG.extraServices.find(s => s.id === sId);
-      if (srv) servicesList.push(srv.name);
+      if (srv) {
+        const sName = (srv.i18n && srv.i18n[lang]) ? srv.i18n[lang].name : (srv.i18n && srv.i18n.ru ? srv.i18n.ru.name : srv.name);
+        servicesList.push(sName);
+      }
     });
 
-    const roomSubtotalRUB = room.priceRUB * nights;
-    let servicesTotalRUB = 0;
+    const roomPriceGEL = room.priceGEL || 160;
+    const roomSubtotalGEL = roomPriceGEL * nights;
+    let servicesTotalGEL = 0;
     this.state.selectedServices.forEach(sId => {
       const srv = MIMINO_CONFIG.extraServices.find(s => s.id === sId);
-      if (srv) servicesTotalRUB += srv.priceRUB;
+      if (srv) servicesTotalGEL += (srv.priceGEL || 0);
     });
-    const discountRUB = (roomSubtotalRUB * this.state.discountPercent) / 100;
-    const grandTotalRUB = roomSubtotalRUB - discountRUB + servicesTotalRUB;
-    const formattedTotal = this.formatCurrency(grandTotalRUB);
+    const discountGEL = (roomSubtotalGEL * this.state.discountPercent) / 100;
+    const grandTotalGEL = roomSubtotalGEL - discountGEL + servicesTotalGEL;
+    const formattedTotal = this.formatCurrency(grandTotalGEL);
 
     const refEl = document.getElementById('vouchRefNumber');
     if (refEl) refEl.textContent = this.state.bookingRef;
@@ -534,26 +578,27 @@ class MiminoBookingEngine {
     if (phoneEl) phoneEl.textContent = this.state.guest.phone;
 
     const roomEl = document.getElementById('vouchRoomTitle');
-    if (roomEl) roomEl.textContent = room.title;
+    if (roomEl) roomEl.textContent = rInfo.title;
 
     const datesEl = document.getElementById('vouchDates');
-    if (datesEl) datesEl.textContent = `${this.formatDateHuman(this.state.checkIn)} — ${this.formatDateHuman(this.state.checkOut)} (${nights} ${this.pluralNights(nights)})`;
+    if (datesEl) datesEl.textContent = `${this.formatDateHuman(this.state.checkIn)} — ${this.formatDateHuman(this.state.checkOut)} (${nights} ${this.pluralNights(nights, lang)})`;
 
     const totalEl = document.getElementById('vouchTotal');
     if (totalEl) totalEl.textContent = formattedTotal;
 
     const srvEl = document.getElementById('vouchServices');
     if (srvEl) {
-      srvEl.textContent = servicesList.length > 0 ? servicesList.join(', ') : 'Без доп. услуг';
+      const noServicesText = lang === 'en' ? 'No extra services' : lang === 'ka' ? 'დამატებითი სერვისების გარეშე' : lang === 'tr' ? 'Ek hizmet yok' : 'Без доп. услуг';
+      srvEl.textContent = servicesList.length > 0 ? servicesList.join(', ') : noServicesText;
     }
 
     // Set up WhatsApp button
     const waBtn = document.getElementById('bkWaShareBtn');
     if (waBtn) {
       const message = encodeURIComponent(
-        `Здравствуйте, отель Mimino! Я оформил бронирование #${this.state.bookingRef}.\n` +
+        `Здравствуйте, отель Aura Del Mar Batumi! Я оформил бронирование #${this.state.bookingRef}.\n` +
         `Гость: ${this.state.guest.name}\n` +
-        `Номер: ${room.title}\n` +
+        `Номер: ${rInfo.title}\n` +
         `Даты: ${this.state.checkIn} — ${this.state.checkOut} (${nights} ночей)\n` +
         `Сумма: ${formattedTotal}\n` +
         (servicesList.length ? `Доп. услуги: ${servicesList.join(', ')}\n` : '') +

@@ -1,10 +1,13 @@
 /**
- * Hotel Mimino Batumi - Main Application JavaScript
- * Handles site interactions, currency conversion, room filtering, lightbox, FAQ
+ * Hotel Aura Del Mar Batumi - Main Application JavaScript
+ * Handles site interactions, currency conversion, room filtering, lightbox, FAQ, i18n sync
  */
 
+let currentCurrency = localStorage.getItem('auradelmar_curr') || 'GEL';
+let currentRoomFilter = 'all';
+
 document.addEventListener('DOMContentLoaded', () => {
-  initCurrencyManager();
+  initCurrencySelector();
   renderRoomCards();
   initRoomFilters();
   initLightbox();
@@ -12,18 +15,39 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeaderScroll();
   initMobileMenu();
   initHeroSync();
+  renderDistances();
+
+  // Listen to language changes from i18n.js
+  window.addEventListener('languageChanged', (e) => {
+    renderRoomCards(currentRoomFilter);
+    renderDistances();
+  });
 });
 
-let currentCurrency = 'RUB';
+function initCurrencySelector() {
+  const buttons = document.querySelectorAll('.currency-btn');
+  
+  // Set initial active state
+  buttons.forEach(btn => {
+    if (btn.getAttribute('data-curr') === currentCurrency) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
 
-function initCurrencyManager() {
-  const pickers = document.querySelectorAll('.currency-select');
-  pickers.forEach(picker => {
-    picker.value = currentCurrency;
-    picker.addEventListener('change', (e) => {
-      currentCurrency = e.target.value;
-      // synchronize all select elements
-      pickers.forEach(p => p.value = currentCurrency);
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      currentCurrency = btn.getAttribute('data-curr');
+      localStorage.setItem('auradelmar_curr', currentCurrency);
+      
+      buttons.forEach(b => {
+        if (b.getAttribute('data-curr') === currentCurrency) {
+          b.classList.add('active');
+        } else {
+          b.classList.remove('active');
+        }
+      });
+
       updateAllSitePrices();
       if (window.miminoBooking) {
         window.miminoBooking.setCurrency(currentCurrency);
@@ -32,101 +56,132 @@ function initCurrencyManager() {
   });
 }
 
-function formatPrice(amountRUB) {
-  const curr = MIMINO_CONFIG.currencies[currentCurrency] || MIMINO_CONFIG.currencies.RUB;
-  const converted = Math.round(amountRUB * curr.rate);
-  const formattedNum = converted.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-  return `${curr.prefix}${formattedNum}${curr.suffix}`;
+function formatPrice(amountGEL) {
+  const curr = MIMINO_CONFIG.currencies[currentCurrency] || MIMINO_CONFIG.currencies.GEL;
+  const converted = Math.round(amountGEL * curr.rate);
+  if (currentCurrency === 'GEL') return `${converted} ₾`;
+  if (currentCurrency === 'RUB') return `${converted.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')} ₽`;
+  if (currentCurrency === 'USD') return `$${converted}`;
+  if (currentCurrency === 'EUR') return `€${converted}`;
+  return `${converted} ${curr.symbol}`;
 }
 
 function updateAllSitePrices() {
-  document.querySelectorAll('[data-price-rub]').forEach(el => {
-    const rub = parseFloat(el.getAttribute('data-price-rub'));
-    if (!isNaN(rub)) {
-      el.textContent = formatPrice(rub);
+  document.querySelectorAll('[data-price-gel]').forEach(el => {
+    const gel = parseFloat(el.getAttribute('data-price-gel'));
+    if (!isNaN(gel)) {
+      el.textContent = formatPrice(gel);
     }
   });
 
-  // Update mobile bar price
+  // Legacy support for data-price-rub if any exists
+  document.querySelectorAll('[data-price-rub]').forEach(el => {
+    const rub = parseFloat(el.getAttribute('data-price-rub'));
+    if (!isNaN(rub)) {
+      const gel = rub / 35;
+      el.textContent = formatPrice(gel);
+    }
+  });
+
+  // Update mobile bottom bar preview price
   const mobPrice = document.getElementById('mobPricePreview');
   if (mobPrice) {
-    const minPrice = Math.min(...MIMINO_CONFIG.rooms.map(r => r.priceRUB));
-    mobPrice.textContent = `от ${formatPrice(minPrice)}`;
+    const minPriceGEL = Math.min(...MIMINO_CONFIG.rooms.map(r => r.priceGEL || (r.priceRUB / 35)));
+    const lang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'ru';
+    const fromWord = lang === 'en' ? 'from ' : lang === 'ka' ? 'დან ' : lang === 'tr' ? 'başlayan ' : 'от ';
+    mobPrice.textContent = `${fromWord}${formatPrice(minPriceGEL)}`;
   }
 }
 
 function renderRoomCards(filter = 'all') {
+  currentRoomFilter = filter;
   const container = document.getElementById('roomsGridContainer');
   if (!container) return;
+
+  const lang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'ru';
 
   const filtered = filter === 'all' 
     ? MIMINO_CONFIG.rooms 
     : MIMINO_CONFIG.rooms.filter(r => r.category === filter);
 
   container.innerHTML = filtered.map(room => {
-    const priceFormatted = formatPrice(room.priceRUB);
+    const priceFormatted = formatPrice(room.priceGEL);
     const photosCount = room.images.length;
+    
+    // Localized room details
+    const roomInfo = (room.i18n && room.i18n[lang]) 
+      ? room.i18n[lang] 
+      : (room.i18n && room.i18n.ru ? room.i18n.ru : {
+          title: room.title,
+          subtitle: room.subtitle,
+          capacity: room.capacity,
+          bed: room.bed,
+          view: room.view,
+          badge: room.badge,
+          description: room.description
+        });
+
     return `
       <article class="room-card" data-category="${room.category}" id="room-${room.id}">
         <div class="room-card-media">
-          <img class="room-card-img" src="${room.images[0].url}" alt="${room.title}" loading="lazy">
-          <div class="room-badge">${room.badge}</div>
-          <button class="room-photo-count" data-lightbox-open="${room.id}" title="Смотреть все фото">
+          <img class="room-card-img" src="${room.images[0].url}" alt="${roomInfo.title}" loading="lazy">
+          <div class="room-badge">${roomInfo.badge}</div>
+          <button class="room-photo-count" data-lightbox-open="${room.id}" title="${window.t ? window.t('rooms.gallery_btn') : 'Смотреть все фото'}">
             <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
               <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
               <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/>
             </svg>
-            <span>+${photosCount} фото</span>
+            <span>+${photosCount}</span>
           </button>
         </div>
         <div class="room-card-body">
           <div class="room-header">
             <div>
-              <h3 class="room-title">${room.title}</h3>
-              <p class="room-subtitle">${room.subtitle}</p>
+              <h3 class="room-title">${roomInfo.title}</h3>
+              <p class="room-subtitle">${roomInfo.subtitle}</p>
             </div>
           </div>
           
           <div class="room-spec-chips">
             <div class="spec-chip">
               <svg fill="currentColor" viewBox="0 0 16 16"><path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3z"/></svg>
-              <span>${room.area} м²</span>
+              <span>${room.area} m²</span>
             </div>
             <div class="spec-chip">
               <svg fill="currentColor" viewBox="0 0 16 16"><path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
-              <span>${room.capacity}</span>
+              <span>${roomInfo.capacity}</span>
             </div>
             <div class="spec-chip">
               <svg fill="currentColor" viewBox="0 0 16 16"><path d="M3 10V2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v8h2a1 1 0 0 1 1 1v3H0v-3a1 1 0 0 1 1-1h2z"/></svg>
-              <span>${room.bed}</span>
+              <span>${roomInfo.bed}</span>
             </div>
           </div>
 
-          <p class="room-desc">${room.description}</p>
+          <p class="room-desc">${roomInfo.description}</p>
 
           <div class="room-amenities-mini">
-            <span class="amenity-tag highlight">☕ Завтрак включен</span>
-            <span class="amenity-tag">❄ Кондиционер</span>
-            <span class="amenity-tag">📺 Smart TV</span>
-            <span class="amenity-tag">📶 Wi-Fi 100 Мбит</span>
-            <span class="amenity-tag">🚿 Собственный душ</span>
-            <span class="amenity-tag">🌿 Балкон</span>
+            <span class="amenity-tag highlight">${window.t ? window.t('rooms.breakfast_tag') : '☕ Завтрак включен'}</span>
+            <span class="amenity-tag">${window.t ? window.t('rooms.ac_tag') : '❄ Кондиционер'}</span>
+            <span class="amenity-tag">${window.t ? window.t('rooms.tv_tag') : '📺 Smart TV'}</span>
+            <span class="amenity-tag">${window.t ? window.t('rooms.wifi_tag') : '📶 Wi-Fi 100 Мбит'}</span>
+            <span class="amenity-tag">${window.t ? window.t('rooms.shower_tag') : '🚿 Собственный душ'}</span>
+            <span class="amenity-tag">${window.t ? window.t('rooms.balcony_tag') : '🌿 Балкон'}</span>
           </div>
 
           <div class="room-footer">
             <div class="room-price-box">
-              <span class="price-label">Цена за 1 ночь</span>
+              <span class="price-label">${window.t ? window.t('rooms.price_label') : 'Цена за 1 ночь'}</span>
               <div class="price-value">
-                <span data-price-rub="${room.priceRUB}">${priceFormatted}</span>
-                <span class="price-period">/ сутки</span>
+                <span data-price-gel="${room.priceGEL}">${priceFormatted}</span>
+                <span class="price-period">${window.t ? window.t('rooms.per_night') : '/ сутки'}</span>
               </div>
             </div>
             <div class="room-actions">
-              <button class="btn btn-outline btn-sm" data-lightbox-open="${room.id}" title="Посмотреть фотографии">
-                Галерея
+              <button class="btn btn-outline btn-sm" data-lightbox-open="${room.id}" title="${window.t ? window.t('rooms.gallery_btn') : 'Посмотреть фотографии'}">
+                ${window.t ? window.t('rooms.gallery_btn') : 'Галерея'}
               </button>
               <button class="btn btn-primary" data-open-booking data-room-id="${room.id}">
-                Забронировать
+                ${window.t ? window.t('rooms.book_btn') : 'Забронировать'}
               </button>
             </div>
           </div>
@@ -135,9 +190,26 @@ function renderRoomCards(filter = 'all') {
     `;
   }).join('');
 
-  // Re-bind booking and lightbox buttons for newly rendered cards
   bindRoomCardButtons();
   updateAllSitePrices();
+}
+
+function renderDistances() {
+  const container = document.getElementById('distancesList');
+  if (!container || !MIMINO_CONFIG.distances) return;
+
+  const lang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'ru';
+
+  container.innerHTML = MIMINO_CONFIG.distances.map(item => {
+    const placeName = typeof item.place === 'object' ? (item.place[lang] || item.place.ru) : item.place;
+    const walkTime = typeof item.walk === 'object' ? (item.walk[lang] || item.walk.ru) : item.walk;
+    return `
+      <div class="distance-item">
+        <span class="distance-place">${placeName}</span>
+        <span class="distance-val">${item.distance} (${walkTime})</span>
+      </div>
+    `;
+  }).join('');
 }
 
 function initRoomFilters() {
@@ -153,129 +225,141 @@ function initRoomFilters() {
 }
 
 function bindRoomCardButtons() {
+  // Re-bind booking buttons
   document.querySelectorAll('[data-open-booking]').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const roomId = btn.getAttribute('data-room-id');
-      if (window.miminoBooking) {
-        window.miminoBooking.openModal(roomId);
-      }
-    });
+    btn.removeEventListener('click', handleBookingClick);
+    btn.addEventListener('click', handleBookingClick);
   });
 
+  // Re-bind lightbox triggers
   document.querySelectorAll('[data-lightbox-open]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const roomId = btn.getAttribute('data-lightbox-open');
-      openLightboxForRoom(roomId);
-    });
+    btn.removeEventListener('click', handleLightboxClick);
+    btn.addEventListener('click', handleLightboxClick);
   });
 }
 
-/* Lightbox Gallery */
-let lightboxImages = [];
+function handleBookingClick(e) {
+  e.preventDefault();
+  const roomId = this.getAttribute('data-room-id');
+  if (window.miminoBooking) {
+    window.miminoBooking.openModal(roomId);
+  }
+}
+
+function handleLightboxClick(e) {
+  e.preventDefault();
+  const roomId = this.getAttribute('data-lightbox-open');
+  openLightboxForRoom(roomId);
+}
+
+// Lightbox logic
+let currentLightboxImages = [];
 let currentLightboxIndex = 0;
 
 function initLightbox() {
-  const lightbox = document.getElementById('photoLightbox');
-  const closeBtn = document.getElementById('lightboxCloseBtn');
-  const prevBtn = document.getElementById('lightboxPrevBtn');
-  const nextBtn = document.getElementById('lightboxNextBtn');
+  const modal = document.getElementById('lightboxModal');
+  const closeBtn = document.getElementById('lightboxClose');
+  const prevBtn = document.getElementById('lightboxPrev');
+  const nextBtn = document.getElementById('lightboxNext');
 
-  if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
-  if (prevBtn) prevBtn.addEventListener('click', () => showLightboxIndex(currentLightboxIndex - 1));
-  if (nextBtn) nextBtn.addEventListener('click', () => showLightboxIndex(currentLightboxIndex + 1));
+  if (!modal) return;
 
-  if (lightbox) {
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) closeLightbox();
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeLightbox);
+  }
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeLightbox();
+  });
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      currentLightboxIndex = (currentLightboxIndex - 1 + currentLightboxImages.length) % currentLightboxImages.length;
+      updateLightboxImage();
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      currentLightboxIndex = (currentLightboxIndex + 1) % currentLightboxImages.length;
+      updateLightboxImage();
     });
   }
 
   document.addEventListener('keydown', (e) => {
-    if (!lightbox || !lightbox.classList.contains('active')) return;
+    if (!modal.classList.contains('active')) return;
     if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') showLightboxIndex(currentLightboxIndex - 1);
-    if (e.key === 'ArrowRight') showLightboxIndex(currentLightboxIndex + 1);
+    if (e.key === 'ArrowLeft' && prevBtn) prevBtn.click();
+    if (e.key === 'ArrowRight' && nextBtn) nextBtn.click();
   });
 }
 
 function openLightboxForRoom(roomId) {
   const room = MIMINO_CONFIG.rooms.find(r => r.id === roomId);
-  if (!room) return;
-  lightboxImages = room.images;
+  if (!room || !room.images || room.images.length === 0) return;
+
+  currentLightboxImages = room.images;
   currentLightboxIndex = 0;
-  renderLightboxThumbs();
-  showLightboxIndex(0);
-  const lightbox = document.getElementById('photoLightbox');
-  if (lightbox) {
-    lightbox.classList.add('active');
+
+  const modal = document.getElementById('lightboxModal');
+  const title = document.getElementById('lightboxTitle');
+  if (title) {
+    const lang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'ru';
+    const roomInfo = (room.i18n && room.i18n[lang]) ? room.i18n[lang] : room;
+    title.textContent = roomInfo.title;
+  }
+
+  updateLightboxImage();
+  if (modal) {
+    modal.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
 }
 
-function showLightboxIndex(idx) {
-  if (lightboxImages.length === 0) return;
-  if (idx < 0) idx = lightboxImages.length - 1;
-  if (idx >= lightboxImages.length) idx = 0;
-  currentLightboxIndex = idx;
+function updateLightboxImage() {
+  const imgEl = document.getElementById('lightboxImg');
+  const captionEl = document.getElementById('lightboxCaption');
+  const counterEl = document.getElementById('lightboxCounter');
 
-  const mainImg = document.getElementById('lightboxMainImg');
-  const caption = document.getElementById('lightboxCaption');
-  const cur = lightboxImages[idx];
+  if (!imgEl || currentLightboxImages.length === 0) return;
 
-  if (mainImg) mainImg.src = cur.url;
-  if (caption) caption.textContent = `${cur.alt} (${idx + 1} из ${lightboxImages.length})`;
-
-  // Highlight thumbnail
-  document.querySelectorAll('.lightbox-thumb').forEach((th, i) => {
-    th.classList.toggle('active', i === idx);
-  });
-}
-
-function renderLightboxThumbs() {
-  const container = document.getElementById('lightboxThumbsContainer');
-  if (!container) return;
-  container.innerHTML = lightboxImages.map((img, i) => `
-    <div class="lightbox-thumb ${i === 0 ? 'active' : ''}" data-thumb-idx="${i}">
-      <img src="${img.url}" alt="Превью" loading="lazy">
-    </div>
-  `).join('');
-
-  container.querySelectorAll('.lightbox-thumb').forEach(th => {
-    th.addEventListener('click', () => {
-      const idx = parseInt(th.getAttribute('data-thumb-idx'), 10);
-      showLightboxIndex(idx);
-    });
-  });
+  const current = currentLightboxImages[currentLightboxIndex];
+  imgEl.src = current.url;
+  imgEl.alt = current.alt || 'Aura Del Mar Room';
+  if (captionEl) captionEl.textContent = current.alt || '';
+  if (counterEl) counterEl.textContent = `${currentLightboxIndex + 1} / ${currentLightboxImages.length}`;
 }
 
 function closeLightbox() {
-  const lightbox = document.getElementById('photoLightbox');
-  if (lightbox) {
-    lightbox.classList.remove('active');
-    if (!document.getElementById('bookingModal').classList.contains('active')) {
-      document.body.style.overflow = '';
-    }
+  const modal = document.getElementById('lightboxModal');
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
   }
 }
 
-/* FAQ Accordion */
+// FAQ Accordion
 function initFaqAccordion() {
-  document.querySelectorAll('.faq-question').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const item = btn.closest('.faq-item');
-      const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-      if (!isOpen) {
-        item.classList.add('open');
-      }
-    });
+  const items = document.querySelectorAll('.faq-item');
+  items.forEach(item => {
+    const btn = item.querySelector('.faq-question');
+    if (btn) {
+      btn.addEventListener('click', () => {
+        const isOpen = item.classList.contains('active');
+        items.forEach(i => i.classList.remove('active'));
+        if (!isOpen) {
+          item.classList.add('active');
+        }
+      });
+    }
   });
 }
 
-/* Sticky Header Scroll */
+// Header Sticky shadow
 function initHeaderScroll() {
   const header = document.querySelector('.site-header');
+  if (!header) return;
+
   window.addEventListener('scroll', () => {
     if (window.scrollY > 40) {
       header.classList.add('scrolled');
@@ -285,49 +369,35 @@ function initHeaderScroll() {
   });
 }
 
-/* Mobile Menu */
+// Mobile Menu
 function initMobileMenu() {
   const btn = document.querySelector('.mobile-menu-btn');
   const nav = document.querySelector('.main-nav');
-  if (btn && nav) {
-    btn.addEventListener('click', () => {
-      nav.classList.toggle('mobile-active');
-    });
+  if (!btn || !nav) return;
 
-    nav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        nav.classList.remove('mobile-active');
-      });
+  btn.addEventListener('click', () => {
+    nav.classList.toggle('active');
+    btn.classList.toggle('active');
+  });
+
+  nav.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('active');
+      btn.classList.remove('active');
     });
-  }
+  });
 }
 
-/* Sync Hero Quick Bar */
+// Hero Search Syncer
 function initHeroSync() {
   const heroBtn = document.getElementById('heroSearchBtn');
   if (heroBtn) {
     heroBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      const heroRoom = document.getElementById('heroRoomType').value;
-      if (window.miminoBooking) {
-        window.miminoBooking.openModal(heroRoom);
+      const roomsSec = document.getElementById('rooms');
+      if (roomsSec) {
+        roomsSec.scrollIntoView({ behavior: 'smooth' });
       }
     });
-  }
-
-  // Pre-fill hero dates
-  const heroIn = document.getElementById('heroCheckIn');
-  const heroOut = document.getElementById('heroCheckOut');
-  if (heroIn && heroOut) {
-    const d1 = new Date();
-    d1.setDate(d1.getDate() + 1);
-    const d2 = new Date();
-    d2.setDate(d2.getDate() + 3);
-    
-    const fmt = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
-    heroIn.value = fmt(d1);
-    heroOut.value = fmt(d2);
-    heroIn.min = fmt(new Date());
-    heroOut.min = heroIn.value;
   }
 }
